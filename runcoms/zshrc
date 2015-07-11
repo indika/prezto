@@ -11,3 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+echo 'Sourcing boxen'
+SHELL='/bin/zsh'
+source /opt/boxen/env.sh
