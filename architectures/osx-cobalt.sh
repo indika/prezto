@@ -29,7 +29,11 @@ export CODE_LIBRARY=${DROPBOX}/code_library
 
 
 
-# VIRTUALENV_ROOT=/Users/indika/.virtualenvs
+
+# ALIASES that I need
+alias gca='git commit -v -a'
+alias grv='git remote -v'
+alias gst='git status'
 
 
 
@@ -43,8 +47,6 @@ alias rmlog='find . -name "*.log" -exec rm -rf {} \;'
 alias haskell='st -n $CODE_LIBRARY/Haskell $CODE_LIBRARY/Blog ~/dev/functional;cd ~/dev/functional'
 
 
-
-
 alias st='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias getpath="pwd | tr -d '\n' | pbcopy"
 alias hgbii='hg branches | grep ipiyasena'
@@ -53,6 +55,7 @@ alias hgbii='hg branches | grep ipiyasena'
 alias pass='pwgen -y 16'
 
 
+alias write='st -n /Users/indika/dev/config/sublime/projects/write.sublime-project'
 
 
 

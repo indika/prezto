@@ -1,3 +1,6 @@
+export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/.cabal/bin
+export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
+
 
 # THIS IS DEFAULT
 WORKON=default
@@ -105,6 +108,7 @@ function netcon_db_switch()
     SITEKEY=lego
     ss $SITEKEY 'rm -f /etc/netcon/netcon.db; cp /etc/netcon/netcon.db.nbb-dev /etc/netcon/netcon.db'
 }
+
 
 
 function netcon_migrate()
