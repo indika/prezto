@@ -15,3 +15,7 @@ fi
 echo 'Sourcing boxen'
 SHELL='/bin/zsh'
 source /opt/boxen/env.sh
+
+ZSH_HOME='/Users/indika/.zprezto'
+# ZSH_HOME=$HOME/.zprezto
+source /Users/indika/.zprezto/architectures/osx-cobalt.sh
