@@ -4,7 +4,7 @@
 alias boxen_edit='st -n /Users/indika/dev/config/sublime/projects/boxen.sublime-project'
 
 
-function boxen_pre()
+function pre_boxen()
 {
     cd /Users/indika/dev/config
     git status
@@ -14,7 +14,7 @@ function boxen_pre()
 }
 
 
-function boxen_run()
+function run_boxen()
 {
     cd /opt/boxen/repo/script
     ./boxen

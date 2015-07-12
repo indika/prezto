@@ -1,4 +1,4 @@
-export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/.cabal/bin
+export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
 export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
 
 

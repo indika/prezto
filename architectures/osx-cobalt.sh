@@ -35,7 +35,7 @@ alias gca='git commit -v -a'
 alias grv='git remote -v'
 alias gst='git status'
 
-
+alias ll='ls -lah'
 
 alias pass='pwgen -y 16'
 
