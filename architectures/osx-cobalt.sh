@@ -11,7 +11,7 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 # source $ZSH_HOME/architectures/tools/synergy.sh
 
 
-alias ohmyzsh="st -n ~/.zshrc ~/.bashrc  ~/.oh-my-zsh ~/.oh-my-zsh/architectures/osx-cobalt.sh"
+
 
 # Netbox Blue Specific
 
@@ -22,8 +22,8 @@ export BOX_SAFECHAT=/Users/indika/dev/box/safechat
 
 # Generic Stuff
 
-export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages/User'
-export CONFIG_PYCHARM='/Users/indika/Library/Preferences/PyCharm30'
+export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages'
+export CONFIG_PYCHARM='/Users/indika/Library/Preferences/PyCharm40'
 export DROPBOX="/Users/indika/Dropbox"
 export CODE_LIBRARY=${DROPBOX}/code_library
 
@@ -34,6 +34,8 @@ export CODE_LIBRARY=${DROPBOX}/code_library
 alias gca='git commit -v -a'
 alias grv='git remote -v'
 alias gst='git status'
+alias ggpull='git pull origin master'
+alias ggpush='git push origin master'
 
 alias ll='ls -lah'
 
