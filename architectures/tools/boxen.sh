@@ -11,6 +11,9 @@ function pre_boxen()
 
     cd /Users/indika/.zprezto
     git status
+
+    echo 'Keep sudo alive\n'
+    echo 'while true; do sudo echo "Keeping sudo alive..."; sleep 60; done'
 }
 
 

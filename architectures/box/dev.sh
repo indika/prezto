@@ -3,12 +3,11 @@ export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/module
 
 
 source $ZSH_HOME/architectures/box/netcon.sh
+source $ZSH_HOME/architectures/box/site_init.sh
 
 
-# THIS IS DEFAULT
-WORKON=default
 
-CURRENT_PROJECT=/Users/indika/dev/box/safechat_$WORKON
+CURRENT_PROJECT=/Users/indika/dev/box/safechat
 
 alias safechat='$CURRENT_PROJECT/nbwebscan/src/nbwebscan'
 alias yahoo='$CURRENT_PROJECT/nbwebscan/src/nbwebscan/yahoo/messenger'
@@ -24,6 +23,45 @@ alias icap_spector="/Users/indika/.virtualenvs/safechat/bin/python $CURRENT_PROJ
 
 
 
+
+function test_on_lego()
+{
+    printf "Selective files (Netbox) are being AUPed to Lego\n"
+    cd /Users/indika/dev/box/netbox
+    hg baup lego /Users/indika/dev/box/netbox
+
+    printf "Selective files (Safchat) are being AUPed to Lego\n"
+    cd /Users/indika/dev/box/safechat
+    hg baup lego /Users/indika/dev/box/safechat
+
+    rununittest lego -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
+
+    ag -B 1 -A 3 'indika' $1.log
+    ag -B 1 -A 3 'FAIL' $1.log
+    ag -B 1 -A 3 'passed' $1.log
+
+    printf "TESTING: %s" % $1
+}
+
+
+function test_on_motor()
+{
+    printf "Selective files (Netbox) are being AUPed to MOTOR\n"
+    cd /Users/indika/dev/box/netbox
+    hg baup motor /Users/indika/dev/box/netbox
+
+    printf "Selective files (Safchat) are being AUPed to MOTOR\n"
+    cd /Users/indika/dev/box/safechat
+    hg baup motor /Users/indika/dev/box/safechat
+
+    rununittest motor -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
+
+    ag -B 1 -A 3 'indika' $1.log
+    ag -B 1 -A 3 'FAIL' $1.log
+    ag -B 1 -A 3 'passed' $1.log
+
+    printf "TESTING: %s" % $1
+}
 
 
 function clear_flush()
