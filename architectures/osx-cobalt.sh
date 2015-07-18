@@ -12,7 +12,6 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 
 
 
-
 # Netbox Blue Specific
 
 export BOX_DOCS=/Users/indika/dev/box/docs
@@ -83,10 +82,10 @@ function ad()
 
 
 # activate
-# source $VIRTUALENV_ROOT/dev/bin/activate
+source ~/.virtualenvs/netbox/bin/activate
 
 # PYENV Stuff
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-pyenv shell netbox
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# pyenv shell netbox
 
