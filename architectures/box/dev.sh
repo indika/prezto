@@ -26,14 +26,15 @@ alias icap_spector="/Users/indika/.virtualenvs/safechat/bin/python $CURRENT_PROJ
 
 function test_on_lego()
 {
-    printf "Selective files (Netbox) are being AUPed to Lego\n"
-    cd /Users/indika/dev/box/netbox
-    hg baup lego /Users/indika/dev/box/netbox
+    # printf "Selective files (Netbox) are being AUPed to Lego\n"
+    # cd /Users/indika/dev/box/netbox
+    # hg baup lego /Users/indika/dev/box/netbox
 
-    printf "Selective files (Safchat) are being AUPed to Lego\n"
-    cd /Users/indika/dev/box/safechat
-    hg baup lego /Users/indika/dev/box/safechat
+    # printf "Selective files (Safchat) are being AUPed to Lego\n"
+    # cd /Users/indika/dev/box/safechat
+    # hg baup lego /Users/indika/dev/box/safechat
 
+    aup -r lego .
     rununittest lego -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
 
     ag -B 1 -A 3 'indika' $1.log
