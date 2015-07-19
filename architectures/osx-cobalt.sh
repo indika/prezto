@@ -62,7 +62,7 @@ alias write='st -n /Users/indika/dev/config/sublime/projects/write.sublime-proje
 
 
 # Generic stuff
-alias movies='echo "http://thepiratebay.se/browse/201/0/7/0" | pbcopy'
+alias movies='echo "https://thepiratebay.vg//browse/201/0/7/0" | pbcopy'
 
 
 
