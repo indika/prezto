@@ -10,6 +10,11 @@ function motor_netcon_test()
     aup -r $SITEKEY /Users/indika/dev/box/netbox/nbshared
     aup -r $SITEKEY /Users/indika/dev/box/netbox/py-nb
     aup -r $SITEKEY /Users/indika/dev/box/netbox/nbwebobj
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/ngfw
+
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/nbscan
+    aup -r $SITEKEY /Users/indika/dev/box/safechat
+
     ss $SITEKEY 'systemctl enable hived.service; systemctl start hived.service'
     ss $SITEKEY 'journalctl -u hived.service'
 
@@ -29,6 +34,11 @@ function netcon_init()
     aup -r $SITEKEY /Users/indika/dev/box/netbox/nbshared
     aup -r $SITEKEY /Users/indika/dev/box/netbox/py-nb
     aup -r $SITEKEY /Users/indika/dev/box/netbox/nbwebobj
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/ngfw
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/lcdd
+
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/nbscan
+    aup -r $SITEKEY /Users/indika/dev/box/safechat
 
     ss $SITEKEY 'rm -f /home/httpd/netbox/net/passthroughnets*; rm -f /usr/lib/python2.7/site-packages/netcon/plugins/passthroughnets*; rm -f /usr/lib/python2.3/site-packages/netcon/plugins/passthroughnets*'
 
@@ -45,25 +55,58 @@ function netcon_init()
     ss $SITEKEY 'touch /nbdebug'
 }
 
+function netcon_search()
+{
+    ag 'networks4.*append'
+    ag 'networks4.*=.*\['
+    ag 'networks6.*append'
+    ag 'networks6.*=.*\['
+    ag 'routes4.*append'
+    ag 'routes4.*=.*\['
+    ag 'routes6.*append'
+    ag 'routes6.*=.*\['
+}
+
+function netcon_ngfw()
+{
+    SITEKEY=$1
+
+    cd /Users/indika/dev/box/netbox
+    hg baup $SITEKEY ~/dev/box/netbox
+    aup -r $SITEKEY /Users/indika/dev/box/netbox/ngfw
+
+    # ss $SITEKEY 'cd /usr/lib/python/site-packages/ngfw; python nbdb.py'
+
+    cd /Users/indika/dev/box/netbox/netcon/tests
+    test_on_site $SITEKEY test_ngfw_hive_migration.py
+}
+
+
 function netcon_migrate()
 {
     SITEKEY=$1
 
     cd ~/dev/box/netbox
     hg baup $SITEKEY ~/dev/box/netbox
-    ss $SITEKEY 'cd /usr/lib/python2.7/site-packages/netcon/migration; python migrationtool.py'
-    ss $SITEKEY 'curl localhost:60002/config/netcon > /tmp/netcon.json'
+    aup $SITEKEY /Users/indika/dev/box/netbox/netcon/src/netcon/test
+
+    ss $SITEKEY 'cd /usr/libexec/nbdb.d; python netconhive'
+
+    ss $SITEKEY 'curl localhost:60002/config/network > /tmp/netcon.json'
     sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/netcon_dbs/netcon.json
 
-    ss $SITEKEY 'cd /usr/lib/python2.7/site-packages/netcon/migration; python test_migration.py'
+    ss $SITEKEY 'cd /usr/lib/python2.7/site-packages/netcon/test; python test_migration.py'
 }
 
 function netcon_json()
 {
     SITEKEY=$1
 
-    ss $SITEKEY 'curl localhost:60002/config/netcon > /tmp/netcon.json'
+    ss $SITEKEY 'curl localhost:60002/config/network > /tmp/netcon.json'
     sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/netcon_dbs/netcon.json
+
+    ss $SITEKEY 'curl localhost:60002/config/ngfw/config/policies > /tmp/ngfw.json'
+    sc $SITEKEY:/tmp/ngfw.json /Users/indika/dev/box/netcon_dbs/ngfw.json
 }
 
 function netcon_test_durus()

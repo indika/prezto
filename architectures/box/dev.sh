@@ -35,6 +35,8 @@ function test_on_lego()
     # hg baup lego /Users/indika/dev/box/safechat
 
     aup -r lego .
+    hg baup lego .
+
     rununittest lego -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
 
     ag -B 1 -A 3 'indika' $1.log
@@ -62,6 +64,19 @@ function test_on_motor()
     ag -B 1 -A 3 'passed' $1.log
 
     printf "TESTING: %s" % $1
+}
+
+function test_on_site()
+{
+    SITEKEY=$1
+    rununittest $SITEKEY -n -t '-xvs --report=skipped' $2 2>&1 | tee $2.log
+
+    ag -B 1 -A 3 'indika' $2.log
+    ag -B 1 -A 3 'FAIL' $2.log
+    ag -B 1 -A 3 'passed' $2.log
+
+    printf "TESTING: %s" % $2
+
 }
 
 
