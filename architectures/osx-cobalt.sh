@@ -2,6 +2,7 @@
 
 
 # Imports
+source $ZSH_HOME/architectures/all-common.sh
 source $ZSH_HOME/architectures/osx-common.sh
 
 source $ZSH_HOME/architectures/box/rdp.sh
@@ -31,14 +32,6 @@ export CODE_LIBRARY=${DROPBOX}/code_library
 
 
 
-# ALIASES that I need
-alias gca='git commit -v -a'
-alias grv='git remote -v'
-alias gst='git status'
-alias ggpull='git pull origin master'
-alias ggpush='git push origin master'
-
-alias ll='ls -lah'
 
 alias pass='pwgen -y 16'
 

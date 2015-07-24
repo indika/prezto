@@ -15,4 +15,7 @@ fi
 
 ZSH_HOME='/home/deploy/.zprezto'
 
+source /home/deploy/.rbenvrc
+source /home/deploy/.zprezto/architectures/linux-shan.sh
+
 alias resource="source ~/.zshrc"
