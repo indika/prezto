@@ -2,6 +2,8 @@
 
 
 # Imports
+source $ZSH_HOME/architectures/osx-common.sh
+
 source $ZSH_HOME/architectures/box/rdp.sh
 source $ZSH_HOME/architectures/box/dev.sh
 

@@ -5,16 +5,18 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# It is important to source boxen before Prezto so that it can find binaries
+echo 'Sourcing boxen'
+SHELL='/bin/zsh'
+source /opt/boxen/env.sh
+
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
-
-echo 'Sourcing boxen'
-SHELL='/bin/zsh'
-source /opt/boxen/env.sh
 
 PATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnubin:$PATH"
 MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"

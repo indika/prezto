@@ -1,7 +1,8 @@
 
 
 FULL_SCREEN_24='1920x1160'
-alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u netboxblue -d win7-64bit -p oxcoda99 10.107.9.1"
+#alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u netboxblue -d win7-64bit -p oxcoda99 10.107.9.1"
+alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d win7-64bit -p oxcoda99 10.107.9.1"
 
 
 alias lync_admin='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11'
