@@ -15,13 +15,6 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 
 
 
-# Netbox Blue Specific
-
-export BOX_DOCS=/Users/indika/dev/box/docs
-export BOX_SAFECHAT=/Users/indika/dev/box/safechat
-
-
-
 # Generic Stuff
 
 export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages'
@@ -30,7 +23,12 @@ export DROPBOX="/Users/indika/Dropbox"
 export CODE_LIBRARY=${DROPBOX}/code_library
 
 
-
+# VM stuff
+alias vm_pause='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a pause'
+alias vm_resume='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a resume'
+alias vm_start='VBoxManage startvm 1e464b2d-f577-4bc5-9fa3-47459630694a --type headless'
+alias vm_stop="ssh shan 'shutdown now'"
+alias vm_status='VBoxManage list runningvms | grep 1e464b2d-f577-4bc5-9fa3-47459630694a'
 
 
 alias pass='pwgen -y 16'
@@ -68,6 +66,7 @@ function last_command()
 }
 
 
+# This has to come after the aliases
 function ad()
 {
     ag -C5 --ignore-case $1 $CODE_LIBRARY $BOX_DOCS

@@ -20,6 +20,12 @@ function pre_boxen()
 function run_boxen()
 {
     cd /opt/boxen/repo/script
-    ./boxen --no-fde
+    ./boxen
+}
+
+function graph_boxen()
+{
+    cd /opt/boxen/repo/script
+    ./boxen --graph
 }
 
