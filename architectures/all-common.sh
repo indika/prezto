@@ -7,4 +7,5 @@ alias ggpush='git push origin master'
 
 alias ll='ls -lah'
 
-export GREP_OPTIONS='--color=always'
+# I'm not sure I want this. It might be interfering with my prezto
+# export GREP_OPTIONS='--color=always'

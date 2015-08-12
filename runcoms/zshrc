@@ -21,6 +21,8 @@ fi
 PATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnubin:$PATH"
 MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
 
+#export NIX_PATH=nixpkgs=/Users/indika/dev/tools/nixpkgs
+#source /Users/indika/.nix-profile/etc/profile.d/nix.sh
 
 ZSH_HOME='/Users/indika/.zprezto'
 # ZSH_HOME=$HOME/.zprezto

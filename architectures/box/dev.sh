@@ -6,6 +6,7 @@ export BOX_DOCS=/Users/indika/dev/box/docs
 
 
 source $ZSH_HOME/architectures/box/netcon.sh
+source $ZSH_HOME/architectures/box/lync.sh
 source $ZSH_HOME/architectures/box/site_init.sh
 
 

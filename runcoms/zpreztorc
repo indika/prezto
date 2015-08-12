@@ -29,10 +29,10 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'directory' \
-  'fasd' \
   'spectrum' \
   'utility' \
   'completion' \
+  'fasd' \
   'git' \
   'syntax-highlighting' \
   'prompt'
