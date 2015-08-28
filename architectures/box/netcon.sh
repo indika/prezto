@@ -118,18 +118,15 @@ function netcon_pry()
     ssh l 'cd /etc/netcon; mv netcon.db netcon.db.orig; cp /tmp/netcon.db .; chmod g+w netcon.db; chown nobody:root netcon.db; python -m netcon.migration.pry; rm netcon.db; mv netcon.db.orig netcon.db'
 }
 
-
-function netcon_search_networks4()
+function netcon_pry_inject()
 {
-    ag 'networks4.*append'
-    ag 'networks4.*=.*\['
-    ag 'networks6.*append'
-    ag 'networks6.*=.*\['
-    ag 'routes4.*append'
-    ag 'routes4.*=.*\['
-    ag 'routes6.*append'
-    ag 'routes6.*=.*\['
+    rm -f /tmp/netcon.db
+    scp m:/var/backups/save/absme2/netcon.db /tmp
+    scp /tmp/netcon.db l:/tmp/netcon.db
+
+    ssh l 'cd /etc/netcon; mv netcon.db netcon.db.orig; cp /tmp/netcon.db .; chmod g+w netcon.db; chown nobody:root netcon.db;'
 }
+
 
 function netcon_search()
 {

@@ -109,120 +109,12 @@ function cert_install()
 }
 
 
-function lync_msi()
-{
-
-    ss ipiyasena@oink-new.nb 'ls -lht /packages/netbox-29.5.2/mslync*'
-    scp ipiyasena@oink-new.nb:/packages/netbox-29.5.2/mslync-29.5.2-2.i686.rpm .
-    sc mslync-29.5.2-2.i686.rpm lego:
-
-    # Join commands using monoids
-    ss lego 'rpm -U mslync-29.5.1-24.i686.rpm; rpm -qa | grep mslync'
-}
-
-function update_lync()
-{
-    update_tools;
-    cd ~/dev/box/netbox
-    aup -r lego mslync;
-    aup -r lego winrip;
-    aup -r lego winripclient;
-    update_lego
-    ss lego 'service winrip restart'
-    clear_bundles
-    flush_redis
-}
-
-function lync_server()
-{
-
-    cd /Users/indika/dev/box/netbox
-    hg baup lego .
-
-    cd /Users/indika/dev/box/netbox/winrip
-    aup -r lego .
-
-    cd $CURRENT_PROJECT
-    hg baup lego $CURRENT_PROJECT
-
-    # ss lego 'service winrip restart'
-    ss lego 'systemctl restart winrip.service'
-}
-
-function lync_client_lyncadmin()
-{
-    cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@lyncadmin . -v
-
-    cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@lyncadmin . -v
-
-    cd /Users/indika/dev/box/netbox/nblog/src/nblog
-    aup -r --no-restrict Administrator@lyncadmin . -v
-
-    cd /Users/indika/dev/box/netbox/nbshared/src/nbshared
-    aup -r --no-restrict --platform netbox Administrator@lyncadmin . -v
-
-    cd /Users/indika/dev/box/netbox/winrip/src/winrip
-    aup -r --no-restrict --platform netbox Administrator@lyncadmin . -v
-
-    cd /Users/indika/dev/box/netbox/winripclient/src/winripclient
-    aup -r --no-restrict Administrator@lyncadmin . -v
-}
-
-function lync_client_winsvr()
-{
-    cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/nblog/src/nblog
-    aup -r --no-restrict Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/nbshared/src/nbshared
-    aup -r --no-restrict --platform netbox Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/winrip/src/winrip
-    aup -r --no-restrict --platform netbox Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/winripclient/src/winripclient
-    aup -r --no-restrict Administrator@winsvr . -v
-}
 
 
-function lync_test_lyncadmin()
-{
-    cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@lyncadmin . -v
 
-    cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@lyncadmin . -v
 
-    ss Administrator@lyncadmin 'cd /usr/lib/python2.7/site-packages/mslync/test; /cygdrive/c/dev/python276-32/Scripts/py.test -xvs .' 2>&1 | tee mslync_test.log
-    ss Administrator@lyncadmin 'cd /usr/lib/python2.7/site-packages/mslyncchat/test; /cygdrive/c/dev/python276-32/Scripts/py.test -xvs .' 2>&1 | tee mslyncchat_test.log
 
-    ag -B 1 -A 3 'indika' *test.log
-    ag -B 1 -A 3 'FAIL' *test.log
-    ag -B 1 -A 3 'traceback' *test.log
-}
 
-function lync_test_winsvr()
-{
-    cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
-
-    cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
-
-    ss Administrator@winsvr 'cd /usr/lib/python2.7/site-packages/mslync/test; /cygdrive/c/dev/python276-32/Scripts/py.test -xvs .' 2>&1 | tee mslync_test.log
-    ss Administrator@winsvr 'cd /usr/lib/python2.7/site-packages/mslyncchat/test; /cygdrive/c/dev/python276-32/Scripts/py.test -xvs .' 2>&1 | tee mslyncchat_test.log
-
-    ag -B 1 -A 3 'indika' *test.log
-    ag -B 1 -A 3 'FAIL' *test.log
-    ag -B 1 -A 3 'traceback' *test.log
-}
 
 
 function cloud_test_framework()
@@ -422,30 +314,7 @@ function facebook_protocol_handlers()
 
 
 
-function test_all_in_directory()
-{
-    printf "HG differential (src/nbwebscan/)  AUPed to LEGO\n"
-    hg baup lego $CURRENT_PROJECT
 
-    for f in test_*.py
-    do
-        # echo $f
-        filename="${filename%.*}"
-        echo filename
-        rununittest lego -n -t '-xvs --report=skipped' $f 2>&1 | tee $f.log
-
-    if [[ "$f" != *\.* ]]
-    then
-        echo "not a file"
-    fi
-
-    done
-
-    ag -B 1 -A 3 'indika' *.log
-    ag -B 1 -A 3 'FAIL' *.log
-    ag -B 1 -A 3 'failed' *.log
-    ag -B 1 -A 3 'passed' *.log
-}
 
 function test_all_facebook()
 {

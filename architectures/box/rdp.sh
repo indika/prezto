@@ -1,12 +1,14 @@
 
 
+FULL_SCREEN_13='1024x700'
+FULL_SCREEN_23='1920x1040'
 FULL_SCREEN_24='1920x1160'
-FULL_SCREEN_23='1920x1020'
+
 #alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u netboxblue -d win7-64bit -p oxcoda99 10.107.9.1"
 alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d win7-64bit -p oxcoda99 10.107.9.1"
 
 
-alias lync_admin='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11'
+alias lync_admin="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11"
 alias lync_admin_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11'
 alias lync_admin_root='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -p Oxcoda99 10.12.101.11'
 
@@ -31,7 +33,7 @@ alias lync_user3_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u user3 -d nb
 
 # alias lync_beast='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u Administrator -d labs.local -p Oxcoda99 10.12.100.11'
 
-alias lync_beast="rdesktop -g${FULL_SCREEN_23} -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186"
+alias lync_beast="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186"
 
 # At Home
 # alias lync_beast='rdesktop -g1920x1025 -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186'

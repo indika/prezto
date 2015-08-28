@@ -31,6 +31,11 @@ alias vm_stop="ssh shan 'shutdown now'"
 alias vm_status='VBoxManage list runningvms | grep 1e464b2d-f577-4bc5-9fa3-47459630694a'
 
 
+# Sanity Stuff
+
+alias sanity_start='/Users/indika/dev/sanity/responder/dist/build/sanity/sanity'
+
+
 alias pass='pwgen -y 16'
 
 

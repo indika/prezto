@@ -5,26 +5,16 @@ export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/module
 export BOX_DOCS=/Users/indika/dev/box/docs
 
 
-source $ZSH_HOME/architectures/box/netcon.sh
-source $ZSH_HOME/architectures/box/lync.sh
+#source $ZSH_HOME/architectures/box/netcon.sh
+#source $ZSH_HOME/architectures/box/lync.sh
 source $ZSH_HOME/architectures/box/site_init.sh
 
 
 
 
-CURRENT_PROJECT=/Users/indika/dev/box/safechat
-
-alias safechat='$CURRENT_PROJECT/nbwebscan/src/nbwebscan'
-alias yahoo='$CURRENT_PROJECT/nbwebscan/src/nbwebscan/yahoo/messenger'
-alias linkedin='$CURRENT_PROJECT/nbwebscan/src/nbwebscan/linkedin'
-alias twitter='$CURRENT_PROJECT/nbwebscan/src/nbwebscan/twitter'
-alias aim='$CURRENT_PROJECT/nbwebscan/src/nbwebscan/aim'
-alias evernote='/Users/indika/dev/box/srm/srm/src/srm/evernote'
 
 
 
-alias hgb="hg branches | sort | grep 'ipiyasena'"
-alias icap_spector="/Users/indika/.virtualenvs/safechat/bin/python $CURRENT_PROJECT/nbwebscan/src/nbwebscan/helper/icap_spector/icap_spector.py"
 
 
 
@@ -81,7 +71,31 @@ function test_on_site()
     ag -B 1 -A 3 'passed' $2.log
 
     printf "TESTING: %s" % $2
+}
 
+function test_all_in_directory()
+{
+    printf "HG differential (src/nbwebscan/)  AUPed to LEGO\n"
+    hg baup lego /Users/indika/dev/box/safechat
+
+    for f in test_*.py
+    do
+        # echo $f
+        filename="${filename%.*}"
+        echo filename
+        rununittest lego -n -t '-xvs --report=skipped' $f 2>&1 | tee $f.log
+
+    if [[ "$f" != *\.* ]]
+    then
+        echo "not a file"
+    fi
+
+    done
+
+    ag -B 1 -A 3 'indika' *.log
+    ag -B 1 -A 3 'FAIL' *.log
+    ag -B 1 -A 3 'failed' *.log
+    ag -B 1 -A 3 'passed' *.log
 }
 
 
