@@ -43,7 +43,10 @@ alias lync_beast_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u Administrat
 alias lync_beast_user1='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u testlyncuser1 -d labs.local -p Oxcoda99 10.12.11.186'
 alias lync_beast_user2='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u testlyncuser2 -d labs.local -p Oxcoda99 10.12.11.186'
 
+# This is the standard
 alias lync_beast_user3='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u testlyncuser3 -d labs.local -p Oxcoda99 10.3.20.177'
+# I've put it behind Lego now
+# alias lync_beast_user3='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u testlyncuser3 -d labs.local -p Oxcoda99 10.3.115.200'
 
 alias lync_beast_mark='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u mark.jeffries -d labs.local -p oxcoda99 10.12.11.186'
 
