@@ -24,7 +24,7 @@ function test_on_lego()
     # cd /Users/indika/dev/box/safechat
     # hg baup lego /Users/indika/dev/box/safechat
 
-    aup -r lego .
+    # aup -r lego .
     hg baup lego .
 
     rununittest lego -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
