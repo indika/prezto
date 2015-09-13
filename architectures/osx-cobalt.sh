@@ -34,6 +34,7 @@ alias vm_status='VBoxManage list runningvms | grep 1e464b2d-f577-4bc5-9fa3-47459
 # Sanity Stuff
 
 alias sanity_start='/Users/indika/dev/sanity/responder/dist/build/sanity/sanity'
+alias sanity_ui_start='open /Users/indika/dev/sanity/SanityInterface/build/Release/SanityInterface.app'
 
 
 alias pass='pwgen -y 16'
@@ -81,10 +82,10 @@ function ad()
 
 
 # activate
-source ~/.virtualenvs/netbox/bin/activate
+# source ~/.virtualenvs/netbox/bin/activate
 
 # PYENV Stuff
-# eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # pyenv shell netbox
 

@@ -1,6 +1,7 @@
 # Netbox Blue Specific
 
-export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
+export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+# export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/dev/tools/sublimehaskell-sandbox/.cabal-sandbox/bin
 export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
 export BOX_DOCS=/Users/indika/dev/box/docs
