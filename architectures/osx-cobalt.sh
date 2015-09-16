@@ -82,10 +82,10 @@ function ad()
 
 
 # activate
-# source ~/.virtualenvs/netbox/bin/activate
+source ~/.virtualenvs/netbox/bin/activate
 
 # PYENV Stuff
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # pyenv shell netbox
 

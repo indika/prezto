@@ -28,7 +28,7 @@ function update_lego()
 
     # ss lego 'nbconf squid_refresh; systemctl restart squid; systemctl restart safechat_icap'
     ss lego 'systemctl restart safechat_icap; systemctl | grep safechat_icap'
-    ss lego 'nbconf squid_refresh'
+    # ss lego 'nbconf squid_refresh'
 }
 
 function fetch_icaps()
