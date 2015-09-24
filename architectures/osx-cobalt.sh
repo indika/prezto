@@ -23,6 +23,13 @@ export DROPBOX="/Users/indika/Dropbox"
 export CODE_LIBRARY=${DROPBOX}/code_library
 
 
+# Emacs stuff
+function em()
+{
+    emacsclient -n $1
+}
+
+
 # VM stuff
 alias vm_pause='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a pause'
 alias vm_resume='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a resume'
@@ -35,6 +42,12 @@ alias vm_status='VBoxManage list runningvms | grep 1e464b2d-f577-4bc5-9fa3-47459
 
 alias sanity_start='/Users/indika/dev/sanity/responder/dist/build/sanity/sanity'
 alias sanity_ui_start='open /Users/indika/dev/sanity/SanityInterface/build/Release/SanityInterface.app'
+alias hitme='/Users/indika/dev/reinforcement/dist/build/reinforcement/reinforcement'
+
+
+# Postgres stuff
+export PGDATA="/opt/boxen/data/postgresql-9.4"
+alias psql='/opt/boxen/homebrew/bin/psql -d postgres'
 
 
 alias pass='pwgen -y 16'

@@ -11,6 +11,8 @@ export BOX_DOCS=/Users/indika/dev/box/docs
 #source $ZSH_HOME/architectures/box/lync.sh
 source $ZSH_HOME/architectures/box/site_init.sh
 source $ZSH_HOME/architectures/box/safechat.sh
+source $ZSH_HOME/architectures/box/chive.sh
+source $ZSH_HOME/architectures/box/internal.sh
 
 
 

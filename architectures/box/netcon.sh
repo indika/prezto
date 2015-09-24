@@ -41,7 +41,7 @@ function netcon_trawl()
 {
     cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup -r motor .
-    ss motor 'cd /usr/lib/python2.7/site-packages/netcon/migration; python migration_on_customer_backups.py'
+    ss motor 'cd /usr/lib/python2.7/site-packages/netcon/migration; python trawl.py'
 }
 
 function netcon_dns()

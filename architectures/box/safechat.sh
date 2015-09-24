@@ -15,6 +15,19 @@ alias evernote='/Users/indika/dev/box/srm/srm/src/srm/evernote'
 alias icap_spector="/Users/indika/.virtualenvs/safechat/bin/python $CURRENT_PROJECT/nbwebscan/src/nbwebscan/helper/icap_spector/icap_spector.py"
 
 
+function test_yieldbroker()
+{
+    cd /Users/indika/dev/box/safechat/nbarchive
+    aup lego /Users/indika/dev/box/safechat/nbarchive/src/nbarchive/delivery/send.py
+
+    ss lego 'python -m nbarchive.delivery.send'
+
+    # aup -r lego . -v
+
+    #from nbarchive.delivery.send import main
+    # main(force_cleanup=True)
+}
+
 function test_aim()
 {
     cd /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/aim
