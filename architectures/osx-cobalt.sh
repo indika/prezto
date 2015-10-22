@@ -50,8 +50,9 @@ export PGDATA="/opt/boxen/data/postgresql-9.4"
 alias psql='/opt/boxen/homebrew/bin/psql -d postgres'
 
 
-alias pass='pwgen -y 16'
 
+
+alias pass='pwgen -y 16'
 
 
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'

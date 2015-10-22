@@ -1,4 +1,27 @@
+# see site_init.sh for related functions
 
+function netcon_json()
+{
+    SITEKEY=$1
+    # SITEKEY=10.107.10.254
+
+    ss $SITEKEY 'curl localhost:60002/config/network > /tmp/netcon.json'
+    sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/dbs_netcon/netcon.json
+
+    # ss $SITEKEY 'curl localhost:60002/config/ngfw/config/policies > /tmp/ngfw.json'
+    # sc $SITEKEY:/tmp/ngfw.json /Users/indika/dev/box/dbs_netcon/ngfw.json
+}
+
+
+function netcon_test()
+{
+    SITEKEY=$1
+
+    cd ~/dev/box/netbox
+    hg baup $SITEKEY ~/dev/box/netbox
+    cd /Users/indika/dev/box/netbox/netcon/tests
+    test_on_site $SITEKEY test_something.py
+}
 
 
 function motor_netcon_test()
@@ -85,11 +108,11 @@ function netcon_init()
     ss $SITEKEY 'systemctl enable hived.service; systemctl start hived.service'
     ss $SITEKEY 'journalctl -u hived.service'
 
-    # sc /Users/indika/dev/box/netcon_dbs/netcon.db.date $SITEKEY:/etc/netcon
-    # sc /Users/indika/dev/box/netcon_dbs/netcon.db.jsracs $SITEKEY:/etc/netcon
-    # sc /Users/indika/dev/box/netcon_dbs/netcon.db.nbb-dev $SITEKEY:/etc/netcon
-    # sc /Users/indika/dev/box/netcon_dbs/netcon.db.oxcoda $SITEKEY:/etc/netcon
-    # sc /Users/indika/dev/box/netcon_dbs/netcon.db.thud $SITEKEY:/etc/netcon
+    # sc /Users/indika/dev/box/dbs_netcon/netcon.db.date $SITEKEY:/etc/netcon
+    # sc /Users/indika/dev/box/dbs_netcon/netcon.db.jsracs $SITEKEY:/etc/netcon
+    # sc /Users/indika/dev/box/dbs_netcon/netcon.db.nbb-dev $SITEKEY:/etc/netcon
+    # sc /Users/indika/dev/box/dbs_netcon/netcon.db.oxcoda $SITEKEY:/etc/netcon
+    # sc /Users/indika/dev/box/dbs_netcon/netcon.db.thud $SITEKEY:/etc/netcon
 
     ss $SITEKEY 'touch /nbdebug'
 }
@@ -170,31 +193,12 @@ function netcon_migrate()
     ss $SITEKEY 'cd /usr/lib/python2.7/site-packages/netcon/migration; python migrationtool.py'
 
     # ss $SITEKEY 'curl localhost:60002/config/network > /tmp/netcon.json'
-    # sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/netcon_dbs/netcon.json
+    # sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/dbs_netcon/netcon.json
 
     # ss $SITEKEY 'cd /usr/lib/python2.7/site-packages/netcon/test; python test_migration.py'
 }
 
-function netcon_json()
-{
-    SITEKEY=10.107.10.254
 
-    ss $SITEKEY 'curl localhost:60002/config/network > /tmp/netcon.json'
-    sc $SITEKEY:/tmp/netcon.json /Users/indika/dev/box/netcon_dbs/netcon.json
-
-    ss $SITEKEY 'curl localhost:60002/config/ngfw/config/policies > /tmp/ngfw.json'
-    sc $SITEKEY:/tmp/ngfw.json /Users/indika/dev/box/netcon_dbs/ngfw.json
-}
-
-function netcon_test()
-{
-    SITEKEY=$1
-
-    cd ~/dev/box/netbox
-    hg baup $SITEKEY ~/dev/box/netbox
-    cd /Users/indika/dev/box/netbox/netcon/tests
-    test_on_site $SITEKEY test_something.py
-}
 
 function netcon_test_localint()
 {
@@ -240,7 +244,7 @@ function netcon_test_durus()
 function netcon_db_fetch()
 {
     SITEKEY=$1
-    sc $SITEKEY:/etc/netcon/netcon.db /Users/indika/dev/box/netcon_dbs/netcon.db.tmp
+    sc $SITEKEY:/etc/netcon/netcon.db /Users/indika/dev/box/dbs_netcon/netcon.db.tmp
 }
 
 function netcon_update()
@@ -265,7 +269,10 @@ function netcon_db_switch()
 
 function netcon_curl()
 {
-    curl 'http://lego.safenetbox.biz/net/edit?oid=links%2F14;bid=links%2F7' -H 'Cookie: session=+D8UOa2KQsicNpAAS8yga8zsQa4W/4cAlmP8TQ8KL1apUt8qtkWIiIxVkMdW2y98JMV+901gnrvB2oX4PHcxr5nY4InrUum+o6p8cey79mcAb4cVk34cMn9LgO+RqJLt5QlvOXDGxjZ43Ad5XIhWUg==' -H 'Origin: http://lego.safenetbox.biz' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://lego.safenetbox.biz/net/edit?oid=links%2F14;bid=links%2F7' -H 'Connection: keep-alive' --data '__formname__=ppplink&oid=links%2F14&enabled=on&advanced=on&name=PPP+Link+USB-ACM&test_pairs4=&username=bob&password=bob&phone_number=123&init_string=ATZ&auth_method=0&force_ip=10.107.10.200&update=Update&%3D%3Dnetworks4%3Dip%5B___new___%5D=&%3D%3Dnetworks4%3Dprefix%5B___new___%5D=&%3D%3Dnetworks4%3Dcomment%5B___new___%5D=&%3D%3Droutes4%3Dnetwork%5B___new___%5D=&%3D%3Droutes4%3Dprefix%5B___new___%5D=&%3D%3Droutes4%3Dmtu%5B___new___%5D=1500&%3D%3Droutes4%3Dcomment%5B___new___%5D=' --compressed
+    # curl 'http://lego.safenetbox.biz/net/edit?oid=links%2F14;bid=links%2F7' -H 'Cookie: session=+D8UOa2KQsicNpAAS8yga8zsQa4W/4cAlmP8TQ8KL1apUt8qtkWIiIxVkMdW2y98JMV+901gnrvB2oX4PHcxr5nY4InrUum+o6p8cey79mcAb4cVk34cMn9LgO+RqJLt5QlvOXDGxjZ43Ad5XIhWUg==' -H 'Origin: http://lego.safenetbox.biz' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://lego.safenetbox.biz/net/edit?oid=links%2F14;bid=links%2F7' -H 'Connection: keep-alive' --data '__formname__=ppplink&oid=links%2F14&enabled=on&advanced=on&name=PPP+Link+USB-ACM&test_pairs4=&username=bob&password=bob&phone_number=123&init_string=ATZ&auth_method=0&force_ip=10.107.10.200&update=Update&%3D%3Dnetworks4%3Dip%5B___new___%5D=&%3D%3Dnetworks4%3Dprefix%5B___new___%5D=&%3D%3Dnetworks4%3Dcomment%5B___new___%5D=&%3D%3Droutes4%3Dnetwork%5B___new___%5D=&%3D%3Droutes4%3Dprefix%5B___new___%5D=&%3D%3Droutes4%3Dmtu%5B___new___%5D=1500&%3D%3Droutes4%3Dcomment%5B___new___%5D=' --compressed
+
+    # Read interfaces
+    curl 'http://lego.safenetbox.biz/net/interfaces?oid=interfaces' -H 'Cookie: session=EtSNGO3BQDy5owSQjPKwBaXngkcV8l/U5SGcwC8OyAL2hxMGb/VkglPEQ8U4Lhc6kETOfVauurwP0QIlUX9cahRon8ly5pEyvlxF8Y3qib4bWvZ6MhEzq0vNK9F2GH2OhjjAMYNmo14cQ9DdGTYp9Q==' -H 'Origin: http://motor.safenetbox.biz' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://motor.safenetbox.biz/net/interfaces?oid=interfaces' -H 'Connection: keep-alive' --data '__formname__=loginform&httpd_username=tech&httpd_password=tech&login=Login' --compressed
 
     # A delete
     #curl 'http://lego.safenetbox.biz/net/local?oid=links%2F0;flav=local' -H 'Pragma: no-cache' -H 'Origin: http://lego.safenetbox.biz' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: no-cache' -H 'Referer: http://lego.safenetbox.biz/net/local?oid=links%2F0;flav=local' -H 'Cookie: session=Z575hMH9Q+OYE0bLnCReIEnVJsfOO4mEawaQlqVJQvtV2Z0Quvoy1MdAR1g8XIlg2ug7u8P1ykokAS8llMGfGAmWjmYoevm22FmYbI0vQFQNy/CbgV90Av/HxKbkh4hTC2tA9Gz5sjGQVz+is+nHmA==' -H 'Connection: keep-alive' --data '__formname__=link&oid=links%2F0&flav=local&dhcp_start=192.168.0.100&dhcp_end=192.168.0.200&%3D%3Dnetworks4%3Dip%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F1%5D=10.233.255.253&%3D%3Dnetworks4%3Dprefix%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F1%5D=255.255.0.0&%3D%3Dnetworks4%3Dcomment%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F1%5D=Old+NBB&%3D%3Dnetworks4%3Dip%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F0%5D=10.12.255.253&%3D%3Dnetworks4%3Dprefix%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F0%5D=255.255.0.0&%3D%3Dnetworks4%3Dcomment%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F0%5D=Current+NBB&%3D%3Dnetworks4%3Ddel%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F3%5D=on&%3D%3Dnetworks4%3Dip%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F3%5D=10.201.255.253&%3D%3Dnetworks4%3Dprefix%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F3%5D=255.255.0.0&%3D%3Dnetworks4%3Dcomment%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F3%5D=New+NEW+YO+YO+NBB&%3D%3Dnetworks4%3Dip%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F2%5D=10.202.255.253&%3D%3Dnetworks4%3Dprefix%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F2%5D=255.255.0.0&%3D%3Dnetworks4%3Dcomment%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_networks%2F2%5D=New+YOYOMAMA+NBB&%3D%3Dnetworks4%3Dip%5B___new___%5D=&%3D%3Dnetworks4%3Dprefix%5B___new___%5D=&%3D%3Dnetworks4%3Dcomment%5B___new___%5D=&networks_update=Update&%3D%3Droutes4%3Dnetwork%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_routes%2F0%5D=10.201.0.0&%3D%3Droutes4%3Dprefix%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_routes%2F0%5D=255.255.0.0&%3D%3Droutes4%3Dvia%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_routes%2F0%5D=10.201.255.253&%3D%3Droutes4%3Dmtu%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_routes%2F0%5D=1500&%3D%3Droutes4%3Dcomment%5B%2Fnetcon%2Fall_links%2F0%2Fipv4_routes%2F0%5D=ROUTING+ROUTING&%3D%3Droutes4%3Dnetwork%5B___new___%5D=&%3D%3Droutes4%3Dprefix%5B___new___%5D=&%3D%3Droutes4%3Dvia%5B___new___%5D=&%3D%3Droutes4%3Dmtu%5B___new___%5D=1500&%3D%3Droutes4%3Dcomment%5B___new___%5D=' --compressed

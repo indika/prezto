@@ -4,17 +4,30 @@ export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/d
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/dev/tools/sublimehaskell-sandbox/.cabal-sandbox/bin
 export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
+export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/mailarchive/mailrelay/src'
 export BOX_DOCS=/Users/indika/dev/box/docs
 
 
-#source $ZSH_HOME/architectures/box/netcon.sh
-#source $ZSH_HOME/architectures/box/lync.sh
 source $ZSH_HOME/architectures/box/site_init.sh
-source $ZSH_HOME/architectures/box/safechat.sh
-source $ZSH_HOME/architectures/box/chive.sh
-source $ZSH_HOME/architectures/box/internal.sh
+source $ZSH_HOME/architectures/box/netcon.sh
+#source $ZSH_HOME/architectures/box/lync.sh
+# source $ZSH_HOME/architectures/box/netlog.sh
+# source $ZSH_HOME/architectures/box/safechat.sh
+# source $ZSH_HOME/architectures/box/chive.sh
+# source $ZSH_HOME/architectures/box/internal.sh
 
 
+# Monitor stuff
+function sync_site()
+{
+    pkill fswatch
+    rm -f /Users/indika/dev/box/saber/sync/sync_input.log
+    # fswatch --batch-marker -e ".hg" . | /Users/indika/dev/box/saber/sync/dist/build/sync/sync
+    fswatch --batch-marker -e ".hg" -e ".git" -e ".idea" /Users/indika/dev/box/netbox > /Users/indika/dev/box/saber/sync/sync_input.log &
+    /Users/indika/dev/box/saber/sync/dist/build/sync/sync $1
+    printf "Destroying process"
+    ps aux | grep fswatch
+}
 
 
 function test_on_lego()
