@@ -1,31 +1,32 @@
-function lync_client_winsvr()
+function lync_update_beast()
 {
     cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
+    aup -r --no-restrict --platform winrip Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
+    aup -r --no-restrict --platform winrip Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/nblog/src/nblog
-    aup -r --no-restrict Administrator@winsvr . -v
+    aup -r --no-restrict Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/nbshared/src/nbshared
-    aup -r --no-restrict --platform netbox Administrator@winsvr . -v
+    aup -r --no-restrict --platform netbox Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/winrip/src/winrip
-    aup -r --no-restrict --platform netbox Administrator@winsvr . -v
+    aup -r --no-restrict --platform netbox Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/winripclient/src/winripclient
-    aup -r --no-restrict Administrator@winsvr . -v
+    aup -r --no-restrict Administrator@beast . -v
 }
+
 
 function lync_update_lite()
 {
     cd /Users/indika/dev/box/netbox/mslync
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
+    aup -r --no-restrict --platform winrip Administrator@beast . -v
 
     cd /Users/indika/dev/box/netbox/mslyncchat
-    aup -r --no-restrict --platform winrip Administrator@winsvr . -v
+    aup -r --no-restrict --platform winrip Administrator@beast . -v
 }
 
 function lync_client_ui_update()

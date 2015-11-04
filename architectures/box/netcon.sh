@@ -12,6 +12,11 @@ function netcon_json()
     # sc $SITEKEY:/tmp/ngfw.json /Users/indika/dev/box/dbs_netcon/ngfw.json
 }
 
+function netcon_sample_hive()
+{
+    scp /Users/indika/dev/tower/sites/motor/assets/network_hive.json m:/etc/hive/network_hive.json
+}
+
 
 function netcon_test()
 {
@@ -117,18 +122,69 @@ function netcon_init()
     ss $SITEKEY 'touch /nbdebug'
 }
 
+
+function netcon_recoil()
+{
+    # start by copying the durus sideways
+    # sleep for 5 minutes
+    # if this process is still running,
+    # remove the current durus database
+    # replace the backup
+    # and restart connectd
+
+    read -p "I do realize that this script only works if systemd is installed..."
+
+    cp /etc/netcon/netcon.db /etc/netcon/netcon.db.sideways
+
+    sleep $((5 * 60))
+    rm -f /etc/netcon/netcon.db
+    mv /etc/netcon/netcon.db.sideways /etc/netcon/netcon.db
+    systemctl restart connectd
+}
+
 function netcon_pry_init()
 {
-    cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
-    aup lego pry.py
-    aup lego __init__.py
+    revert_vm lego 88
+    python /Users/indika/dev/box/sandbox/contact_site.py waitup lego 30.1.11
 
-    # The basic mechanics is
-    #scp -P 4 /var/backups/save/absme2/netcon.db lego.safenetbox.biz:/tmp
+    scp ~/dev/box/sandbox/helpers/pry.py lego:/var/tmp/pry.py
+}
+
+function netcon_pry()
+{
+    SITEKEY=$1
+    EXPECTED_ARGS=1
+
+    if [ $# -ne $EXPECTED_ARGS ]
+    then
+      echo "Usage: `basename $0` {arg}"
+      echo "Not with $# parameters, but with $EXPECTED_ARGS"
+      return
+      # exit $E_BADARGS
+    fi
+
+    echo
+    echo -n "Prying open a netcon DB"
+    echo
+
+
+    NETCON_PATH="/var/backups/extracts/${SITEKEY}/etc/netcon/netcon.db"
+    echo $NETCON_PATH
+    rm -f /var/tmp/netcon.db
+
+    scp motor:${NETCON_PATH} /var/tmp/netcon.db
+    ss lego 'rm /tmp/netcon.db'
+    scp /var/tmp/netcon.db lego:/tmp
+
+    ssh lego 'cd /etc/netcon; mv netcon.db netcon.db.orig; cp /tmp/netcon.db .; chmod g+w netcon.db; chown nobody:root netcon.db;'
+
+    ss lego 'python /var/tmp/pry.py'
+
+    ssh lego 'cd /etc/netcon; rm netcon.db; mv netcon.db.orig netcon.db'
 }
 
 
-function netcon_pry()
+function netcon_pry_something()
 {
     cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup lego pry.py
@@ -150,20 +206,6 @@ function netcon_pry_inject()
     ssh l 'cd /etc/netcon; mv netcon.db netcon.db.orig; cp /tmp/netcon.db .; chmod g+w netcon.db; chown nobody:root netcon.db;'
 }
 
-
-function netcon_search()
-{
-    cd dev/box/netbox
-    ag 'netcon.objstore'
-    ag 'from netcon import objstore'
-}
-
-
-function netcon_rename_netcon()
-{
-    ag 'config_netcon'
-    # printf "Expecting number of"
-}
 
 
 function netcon_ngfw()
