@@ -2,6 +2,7 @@
 
 
 alias boxen_edit='st -n /Users/indika/dev/config/sublime/projects/boxen.sublime-project'
+alias ap='ansible-playbook'
 
 
 function pre_boxen()

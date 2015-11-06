@@ -75,6 +75,8 @@ function revert_motor()
     #48         30.2 - dev trawl (reading for testing, with no internet)
     #50         30.2 - dev trawl d (reading for testing, with no internet)
     #51         30.2 - dev trawl e (reading for testing, with no internet)
+    #52         30.2 - dev trawl e (reading for testing, with no internet, with upgraded schema)
+    #               I may need to take this from 30.1.11
 
     # Motor has UUID: 50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6
      curl 'http://vmware.nb/revertvm' -H 'Origin: http://vmware.nb' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' --data 'uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6&snapshotid=49' --compressed
@@ -175,7 +177,7 @@ function trawl_restart()
 function trawl_restart_lite()
 {
     # Use this for reverting the trawl from what is already 30.2
-    revert_vm motor 51
+    revert_vm motor 52
     sleep 5s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup motor
     cd /Users/indika/dev/tower/sites/motor

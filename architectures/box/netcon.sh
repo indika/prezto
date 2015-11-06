@@ -123,31 +123,12 @@ function netcon_init()
 }
 
 
-function netcon_recoil()
-{
-    # start by copying the durus sideways
-    # sleep for 5 minutes
-    # if this process is still running,
-    # remove the current durus database
-    # replace the backup
-    # and restart connectd
-
-    read -p "I do realize that this script only works if systemd is installed..."
-
-    cp /etc/netcon/netcon.db /etc/netcon/netcon.db.sideways
-
-    sleep $((5 * 60))
-    rm -f /etc/netcon/netcon.db
-    mv /etc/netcon/netcon.db.sideways /etc/netcon/netcon.db
-    systemctl restart connectd
-}
-
 function netcon_pry_init()
 {
     revert_vm lego 88
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego 30.1.11
 
-    scp ~/dev/box/sandbox/helpers/pry.py lego:/var/tmp/pry.py
+    scp ~/dev/box/sandbox/helpers/blue/pry.py lego:/var/tmp/pry.py
 }
 
 function netcon_pry()
@@ -173,6 +154,42 @@ function netcon_pry()
     rm -f /var/tmp/netcon.db
 
     scp motor:${NETCON_PATH} /var/tmp/netcon.db
+    ss lego 'rm /tmp/netcon.db'
+    scp /var/tmp/netcon.db lego:/tmp
+
+    ssh lego 'cd /etc/netcon; mv netcon.db netcon.db.orig; cp /tmp/netcon.db .; chmod g+w netcon.db; chown nobody:root netcon.db;'
+
+    ss lego 'python /var/tmp/pry.py'
+
+    ssh lego 'cd /etc/netcon; rm netcon.db; mv netcon.db.orig netcon.db'
+}
+
+function netcon_pry_blue()
+{
+    #TODO: This script is the same as the one above, but it forms a different sitekey
+    #And reads from blue instead
+
+    SITEKEY=$1
+    EXPECTED_ARGS=1
+
+    if [ $# -ne $EXPECTED_ARGS ]
+    then
+      echo "Usage: `basename $0` {arg}"
+      echo "Not with $# parameters, but with $EXPECTED_ARGS"
+      return
+      # exit $E_BADARGS
+    fi
+
+    echo
+    echo -n "Prying open a netcon DB"
+    echo
+
+
+    NETCON_PATH="/home/ipiyasena/data/netcon/netcon_${SITEKEY}.db"
+    echo $NETCON_PATH
+    rm -f /var/tmp/netcon.db
+
+    scp blue.nb:${NETCON_PATH} /var/tmp/netcon.db
     ss lego 'rm /tmp/netcon.db'
     scp /var/tmp/netcon.db lego:/tmp
 
