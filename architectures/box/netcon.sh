@@ -1,5 +1,13 @@
 # see site_init.sh for related functions
 
+function fetch_trawl_log()
+{
+    cd /Users/indika/dev/box/tasks/trawl
+    rm trawl.log
+    scp blue.nb:/home/ipiyasena/data/trawl/trawl.log.gz .
+    gunzip trawl.log.gz
+}
+
 function netcon_json()
 {
     SITEKEY=$1

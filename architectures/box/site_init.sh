@@ -76,6 +76,7 @@ function revert_motor()
     #50         30.2 - dev trawl d (reading for testing, with no internet)
     #51         30.2 - dev trawl e (reading for testing, with no internet)
     #52         30.2 - dev trawl e (reading for testing, with no internet, with upgraded schema)
+    #61         30.1.11 - pretrawl
     #               I may need to take this from 30.1.11
 
     # Motor has UUID: 50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6
@@ -147,7 +148,7 @@ function test_lego_migration_old()
 
 function trawl_restart()
 {
-    revert_motor
+    revert_vm motor 61
     sleep 5s
     site-update motor netbox_30.2
 
@@ -163,16 +164,19 @@ function trawl_restart()
     ansible-playbook motor.yml
     site-update motor devtools
     ss motor 'touch /tmp/q'
-    cd /Users/indika/dev/box/netbox/netcon
+    cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup -r motor . -v
-    ss build7 'cd /home/ipiyasena/build/safechat/nbwebscan; hg pull -u; hg checkout 9.12; hg build --force --notag --install 10.3.115.100'
-    ss build7 'cd /home/ipiyasena/build/netbox/hive; hg pull -u; hg checkout 30.2; hg build --force --notag --install 10.3.115.100'
+
+    # I shouldn't need this on a real trawl restart
+    # ss build7 'cd /home/ipiyasena/build/safechat/nbwebscan; hg pull -u; hg checkout 9.12; hg build --force --notag --install 10.3.115.100'
+    # ss build7 'cd /home/ipiyasena/build/netbox/hive; hg pull -u; hg checkout 30.2; hg build --force --notag --install 10.3.115.100'
 
     ss motor 'reboot'
     sleep 10s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup motor
-
 }
+
+
 
 function trawl_restart_lite()
 {
@@ -183,7 +187,9 @@ function trawl_restart_lite()
     cd /Users/indika/dev/tower/sites/motor
     ansible-playbook motor.yml
     ss motor 'touch /tmp/q'
-    cd /Users/indika/dev/box/netbox/netcon
+    cd /Users/indika/dev/box/netbox/nbpostgresql
+    aup -r motor . -v
+    cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup -r motor . -v
 }
 

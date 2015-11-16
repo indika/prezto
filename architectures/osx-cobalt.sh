@@ -31,11 +31,11 @@ function em()
 
 
 # VM stuff
-alias vm_pause='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a pause'
-alias vm_resume='VBoxManage controlvm 1e464b2d-f577-4bc5-9fa3-47459630694a resume'
-alias vm_start='VBoxManage startvm 1e464b2d-f577-4bc5-9fa3-47459630694a --type headless'
+alias vm_pause='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 pause'
+alias vm_resume='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 resume'
+alias vm_start='VBoxManage startvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 --type headless'
 alias vm_stop="ssh shan 'shutdown now'"
-alias vm_status='VBoxManage list runningvms | grep 1e464b2d-f577-4bc5-9fa3-47459630694a'
+alias vm_status='VBoxManage list runningvms | grep 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30'
 
 
 # Sanity Stuff
