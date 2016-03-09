@@ -18,9 +18,27 @@ function site_init()
     cd /Users/indika/dev/box/safechat
     aup -r $SITEKEY /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/test -v
     aup $SITEKEY /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/conftest.py -v
-    aup $SITEKEY /Users/indika/dev/box/safechat/nbarchive/src/nbarchive/test -v
+
+    #aup $SITEKEY /Users/indika/dev/box/safechat/nbarchive/src/nbarchive/test -v
 
     scp /Users/indika/dev/box/docs/box.lego.bash_rc.txt ${SITEKEY}:.bashrc
+}
+
+
+function safechat_init()
+{
+    # site-update lego devtools
+    cd /Users/indika/dev/box/netbox
+    hg branch
+
+    cd /Users/indika/dev/box/safechat
+    hg branch
+
+    aup -r lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/test -v
+    aup lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/conftest.py -v
+    aup lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/helper -v
+
+    aup -r lego /Users/indika/dev/box/netbox/nbarchive/src/nbarchive/test -v
 }
 
 
@@ -42,6 +60,21 @@ function nic_lego_set_dev_internet_side()
     curl 'http://vmware.nb/movenics' -H 'Origin: http://vmware.nb' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://vmware.nb/vmdetails?uuid=50004144-07fe-d267-1b01-9413ce4c1027' -H 'Connection: keep-alive' --data 'nicconnected_4000=on&nichardware_4000=Dev&nicconnected_4001=on&nichardware_4001=Dev+Internet+Side&uuid=50004144-07fe-d267-1b01-9413ce4c1027' --compressed
 }
 
+function motor_safe_nics_orig()
+{
+    curl 'http://vmware.nb/movenics' -H 'Origin: http://vmware.nb' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://vmware.nb/vmdetails?uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6&refresh=1447654933.77' -H 'Connection: keep-alive' --data 'nicconnected_4000=on&nichardware_4000=Dev&nicconnected_4001=on&nichardware_4001=Dev+Netbox+LAN+side&nicconnected_4002=on&nichardware_4002=Dev+Netbox+LAN+side&uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6' --compressed
+}
+
+function motor_safe_nics()
+{
+    curl 'http://vmware.nb/movenics' --data 'nicconnected_4000=on&nichardware_4000=Dev&nichardware_4001=Dev+Netbox+LAN+side&nichardware_4002=Dev+Netbox+LAN+side&uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6' --compressed
+}
+
+function motor_remove_dev_nic()
+{
+    curl 'http://vmware.nb/movenics' --data 'nichardware_4000=Dev&nichardware_4001=Dev+Netbox+LAN+side&nichardware_4002=Dev+Netbox+LAN+side&uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6' --compressed
+}
+
 function revert_lego()
 {
     #TODO: Have a look at this page
@@ -59,6 +92,7 @@ function revert_lego()
     #86         30.1.11 checkpoint - clean (updated SSH Key, with multiple Nics)
         #88     30.1.11 checkpoint - clean (updated SSH Key, Cobalt, with multiple nics)
     #87         30.1.11 Configuration
+    #106        30.2 - proxy (clean, cobalt)
 
 
     # Lego has UUID: 50004144-07fe-d267-1b01-9413ce4c1027
@@ -77,12 +111,39 @@ function revert_motor()
     #51         30.2 - dev trawl e (reading for testing, with no internet)
     #52         30.2 - dev trawl e (reading for testing, with no internet, with upgraded schema)
     #61         30.1.11 - pretrawl
+    #63         30.1.11 - pretrawl
     #               I may need to take this from 30.1.11
 
     # Motor has UUID: 50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6
-     curl 'http://vmware.nb/revertvm' -H 'Origin: http://vmware.nb' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en,en-US;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' --data 'uuid=50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6&snapshotid=49' --compressed
 }
 
+function safechat_dev()
+{
+    revert_vm lego 106      #30.2 - proxy (clean, cobalt)
+    # revert lego
+    sleep 10s
+
+    site-update lego netbox_30.2.1
+    cd /Users/indika/dev/tower/sites/lego
+    ansible-playbook lego.yml
+
+    # Now, consider doing the safechat unit test stuff
+    # But I have to ensure that mercurial repositories are on the correct branch
+    site-update lego devtools
+
+    safechat_init
+
+    sleep 30s
+    ssh lego 'reboot'
+}
+
+
+function test_oldrel_migration()
+{
+    revert_vm oldrel 47
+    sleep 10s
+    site-update oldrel indika-testing
+}
 
 function test_pppoe()
 {
@@ -128,6 +189,14 @@ function test_lego_migration()
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego 30.2
 }
 
+
+function test_motor_migration()
+{
+    revert_vm motor 63
+    sleep 5s
+    site-update motor indika-testing
+}
+
 function test_lego_migration_old()
 {
     revert_vm lego 88
@@ -148,17 +217,13 @@ function test_lego_migration_old()
 
 function trawl_restart()
 {
-    revert_vm motor 61
+    # This is the script that I use to restart the trawl from 30.1.x
+
+    revert_vm motor 63
     sleep 5s
     site-update motor netbox_30.2
-
-    # TODO: Not sure how long I should sleep for, but I'm waiting for certain conditions
-    # Such as the correct version has been applied
-    # And perhaps that the runonce's are complete
-
-    # TODO: Read the comments that I have written for myself
-
     sleep 60s
+
     python /Users/indika/dev/box/sandbox/contact_site.py waitup motor 30.2
     cd /Users/indika/dev/tower/sites/motor
     ansible-playbook motor.yml
@@ -167,15 +232,23 @@ function trawl_restart()
     cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup -r motor . -v
 
-    # I shouldn't need this on a real trawl restart
+    motor_safe_nics
+}
+
+function trawl_start()
+{
+    ss motor 'run_trawl'
+    motor_remove_dev_nic
+}
+
+function trawl_restart_dev()
+{
     # ss build7 'cd /home/ipiyasena/build/safechat/nbwebscan; hg pull -u; hg checkout 9.12; hg build --force --notag --install 10.3.115.100'
     # ss build7 'cd /home/ipiyasena/build/netbox/hive; hg pull -u; hg checkout 30.2; hg build --force --notag --install 10.3.115.100'
-
     ss motor 'reboot'
     sleep 10s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup motor
 }
-
 
 
 function trawl_restart_lite()

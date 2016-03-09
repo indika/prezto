@@ -44,6 +44,23 @@ alias sanity_start='/Users/indika/dev/sanity/responder/dist/build/sanity/sanity'
 alias sanity_ui_start='open /Users/indika/dev/sanity/SanityInterface/build/Release/SanityInterface.app'
 alias hitme='/Users/indika/dev/reinforcement/dist/build/reinforcement/reinforcement'
 
+# Delta stuff
+
+function delta_build()
+{
+    cd /Users/indika/dev/box/delta
+    stack build
+}
+
+function delta()
+{
+    /Users/indika/dev/box/delta/.stack-work/install/x86_64-osx/lts-3.15/7.10.2/bin/delta
+}
+
+function delta_test()
+{
+    fswatch --batch-marker -e ".hg" -e ".git" -e ".idea" /Users/indika/dev/box/netbox | delta
+}
 
 # Postgres stuff
 export PGDATA="/opt/boxen/data/postgresql-9.4"

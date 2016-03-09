@@ -8,9 +8,21 @@ FULL_SCREEN_24='1920x1160'
 alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d win7-64bit -p oxcoda99 10.107.9.1"
 
 
+alias bb_ad='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u ipiyasena -d ad -u ipiyasena -p Oxcoda99 10.50.0.1'
+
+alias bb_ad2='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d bb.local -p Oxcoda99 10.50.10.29'
+
+alias lync_something='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.23'
+
+
+
 alias lync_admin="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11"
 alias lync_admin_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11'
 alias lync_admin_root='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -p Oxcoda99 10.12.101.11'
+
+
+
+alias win_build='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.87'
 
 
 alias lync_user1='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u user1 -d nbbdev2008 -p Oxcoda99 10.12.101.11'

@@ -1,21 +1,48 @@
 # Netbox Blue Specific
 
 export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+# export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+
+# Switching between NB and BB
+function switch_bb()
+{
+    cd ~
+    ln -fs /Users/indika/dev/config/mercurial/.hgrc_bb .hgrc
+}
+
+function switch_nb()
+{
+    #TODO: I need to update the path to the correct internal
+    cd ~
+    ln -fs /Users/indika/dev/config/mercurial/.hgrc_nb .hgrc
+}
+
+# # Add GHC 7.10.2 to the PATH, via https://ghcformacosx.github.io/
+# export GHC_DOT_APP="/Applications/ghc-7.10.2.app"
+# if [ -d "$GHC_DOT_APP" ]; then
+#   export PATH="${HOME}/.local/bin:${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+# fi
+
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
-# export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/dev/tools/sublimehaskell-sandbox/.cabal-sandbox/bin
+# export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika $$/dev/tools/sublimehaskell-sandbox/.cabal-sandbox/bin
 export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
 export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/mailarchive/mailrelay/src'
 export BOX_DOCS=/Users/indika/dev/box/docs
 
 
 source $ZSH_HOME/architectures/box/site_init.sh
-source $ZSH_HOME/architectures/box/netcon.sh
-source $ZSH_HOME/architectures/box/reporting.sh
+# source $ZSH_HOME/architectures/box/netcon.sh
+source $ZSH_HOME/architectures/box/netlog.sh
+# source $ZSH_HOME/architectures/box/reporting.sh
 # source $ZSH_HOME/architectures/box/lync.sh
 # source $ZSH_HOME/architectures/box/netlog.sh
-# source $ZSH_HOME/architectures/box/safechat.sh
+source $ZSH_HOME/architectures/box/safechat.sh
 # source $ZSH_HOME/architectures/box/chive.sh
 # source $ZSH_HOME/architectures/box/internal.sh
+
+
+
+
 
 
 # Monitor stuff
@@ -56,14 +83,15 @@ function test_on_lego()
 
 function test_on_motor()
 {
-    printf "Selective files (Netbox) are being AUPed to MOTOR\n"
-    cd /Users/indika/dev/box/netbox
-    hg baup motor /Users/indika/dev/box/netbox
+    # printf "Selective files (Netbox) are being AUPed to MOTOR\n"
+    # cd /Users/indika/dev/box/netbox
+    # hg baup motor /Users/indika/dev/box/netbox
 
-    printf "Selective files (Safchat) are being AUPed to MOTOR\n"
-    cd /Users/indika/dev/box/safechat
-    hg baup motor /Users/indika/dev/box/safechat
+    # printf "Selective files (Safchat) are being AUPed to MOTOR\n"
+    # cd /Users/indika/dev/box/safechat
+    # hg baup motor /Users/indika/dev/box/safechat
 
+    aup -r motor .
     rununittest motor -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
 
     ag -B 1 -A 3 'indika' $1.log
@@ -149,33 +177,6 @@ function fetch()
     st /Users/indika/temp/lego_cache/$1
 }
 
-function fetch_icaps()
-{
-    #cat /var/log/safechat/icap | grep 'XI ICAP.*for URL.*https://twitter.com/i/discover'
-
-    printf "Fetching ICAPs from Lego\n"
-    rm -rf /Users/indika/temp/icaps
-    mkdir /Users/indika/temp/icaps
-
-    sc lego:/var/tmp/safechat/icap/\*.request   /Users/indika/temp/icaps/
-
-    # Now parse them
-    # /Users/indika/.virtualenvs/safechat/bin/python /Users/indika/dev/box/helper/icap_inspector/data/icaps/icap_plain_text.py --dir /Users/indika/temp/icaps
-
-    for f in /Users/indika/temp/icaps/*.request
-    do
-        filename="${f}.txt"
-        echo $filename
-        # rununittest lego -n -t '-xvs --report=skipped' $f 2>&1 | tee $f.log
-        showicap --pretty $f > $filename
-
-    if [[ "$f" != *\.* ]]
-    then
-        echo "not a file"
-    fi
-
-    done
-}
 
 function fetch_bundles()
 {
