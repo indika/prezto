@@ -3,6 +3,10 @@
 export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
 # export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
 
+export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
+# export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
+
+
 # Switching between NB and BB
 function switch_bb()
 {
@@ -17,6 +21,11 @@ function switch_nb()
     ln -fs /Users/indika/dev/config/mercurial/.hgrc_nb .hgrc
 }
 
+function revert_vm()
+{
+    /Users/indika/.virtualenvs/netbox/bin/python /Users/indika/dev/box/sandbox/helpers/revert_vm.py $1 $2
+}
+
 # # Add GHC 7.10.2 to the PATH, via https://ghcformacosx.github.io/
 # export GHC_DOT_APP="/Applications/ghc-7.10.2.app"
 # if [ -d "$GHC_DOT_APP" ]; then
@@ -25,16 +34,15 @@ function switch_nb()
 
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox
 # export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika $$/dev/tools/sublimehaskell-sandbox/.cabal-sandbox/bin
-export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
-export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/mailarchive/mailrelay/src'
 export BOX_DOCS=/Users/indika/dev/box/docs
 
 
 source $ZSH_HOME/architectures/box/site_init.sh
-# source $ZSH_HOME/architectures/box/netcon.sh
-source $ZSH_HOME/architectures/box/netlog.sh
+source $ZSH_HOME/architectures/box/netcon.sh
+# source $ZSH_HOME/architectures/box/netlog.sh
 # source $ZSH_HOME/architectures/box/reporting.sh
-# source $ZSH_HOME/architectures/box/lync.sh
+source $ZSH_HOME/architectures/box/cloud.sh
+source $ZSH_HOME/architectures/box/lync.sh
 # source $ZSH_HOME/architectures/box/netlog.sh
 source $ZSH_HOME/architectures/box/safechat.sh
 # source $ZSH_HOME/architectures/box/chive.sh

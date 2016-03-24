@@ -3,7 +3,40 @@
 
 function test_beta()
 {
-    curl 'http://lego.safenetbox.biz/net/interfaces?oid=interfaces' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: en-US,en;q=0.8' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: http://lego.safenetbox.biz/netconf/advanced' -H 'Cookie: session=mhMU3DTlQwOgYc4qU5A5CueBM+LMwkdo3A7Z6/hrDQTZwk6h8zYcoRa1vppN7qQ/LbxdkjmR4sdATFDEFNJsUsNJuPfS1aXU44XTqWkxIF+8I3qpNh8cKVVj1ms1dqevukiKDV5A4FZCzBOOwZ1mOw==' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' --compressed
+    cd /Users/indika/dev/box/tasks/notest
+    sc ~/dev/box/sandbox/helpers/blue/pry.py oldrel-default:/var/tmp/pry.py
+    ss oldrel-default 'python /var/tmp/pry.py'
+
+
+
+}
+
+
+function test_noop()
+{
+    cd /Users/indika/dev/box/netbox/netcon
+    aup motor /Users/indika/dev/box/netbox/netcon -rv
+
+    cd /Users/indika/dev/tower/sites/motor
+    ap motor.yml
+
+    cd /Users/indika/dev/box/tasks/notest
+    sc netcon-empty.db motor:/etc/netcon/netcon.db
+
+    # sc netcon-notest.db motor:/etc/netcon/netcon.db
+
+
+    #1360819208.38
+    # sc netcon-populated.db motor:/etc/netcon/netcon.db
+
+    ss motor 'python -m netcon.migration.migrationtool'
+}
+
+
+function test_bob()
+{
+    # deleteme
+    sc netcon-populated.db oldrel-default:/etc/netcon/netcon.db
 }
 
 function fetch_trawl_log()

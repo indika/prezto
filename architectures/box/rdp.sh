@@ -23,6 +23,9 @@ alias lync_admin_root='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administra
 
 
 alias win_build='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.87'
+alias winsystest='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.105'
+
+alias wintemp='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99 10.50.10.112'
 
 
 alias lync_user1='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u user1 -d nbbdev2008 -p Oxcoda99 10.12.101.11'

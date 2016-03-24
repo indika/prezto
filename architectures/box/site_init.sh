@@ -4,10 +4,7 @@
 # 2     30.1.11 - nbreports
 
 
-function revert_vm()
-{
-    /Users/indika/.virtualenvs/netbox/bin/python /Users/indika/dev/box/sandbox/helpers/revert_vm.py $1 $2
-}
+
 
 function site_init()
 {

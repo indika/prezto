@@ -1,3 +1,36 @@
+
+
+function msi_test()
+{
+    cd /Users/indika/dev/box/netbox/winripclient/src/winripclient/tests
+    aup BloomDev@winsystest systest_msi_tmp.py -v
+    aup BloomDev@winsystest fetch_rpms.py -v
+    # ssh winsystest '/cygdrive/c/Python27/python.exe $(cygpath --windows "/usr/lib/python2.7/site-packages/winripclient/tests/systest_msi_tmp.py")'
+    # ssh winsystest 'python /usr/lib/python2.7/site-packages/winripclient/tests/fetch_rpms.py --uninstall mslync'
+    # ssh winsystest 'python /usr/lib/python2.7/site-packages/winripclient/tests/fetch_rpms.py -x'
+    ssh winsystest 'python /usr/lib/python2.7/site-packages/winripclient/tests/fetch_rpms.py -i mslync'
+}
+
+function msi_test_remove()
+{
+    cd /Users/indika/dev/box/netbox/winripclient/src/winripclient/tests
+    aup BloomDev@winsystest systest_msi_tmp.py -v
+    aup BloomDev@winsystest fetch_rpms.py -v
+    ssh winsystest 'python /usr/lib/python2.7/site-packages/winripclient/tests/fetch_rpms.py -x'
+}
+
+
+function full_test()
+{
+    revert_vm winsystest 3
+    sleep 45s
+
+    cd /Users/indika/dev/tower/sites/winsystest
+    ap winsystest.yml
+    msi_test
+}
+
+
 function lync_update_beast()
 {
     cd /Users/indika/dev/box/netbox/mslync

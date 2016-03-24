@@ -37,6 +37,10 @@ alias vm_start='VBoxManage startvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 --type h
 alias vm_stop="ssh shan 'shutdown now'"
 alias vm_status='VBoxManage list runningvms | grep 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30'
 
+# Tower stuff
+
+alias tower='/Users/indika/dev/tower/sites'
+
 
 # Sanity Stuff
 
@@ -80,6 +84,7 @@ alias haskell='st -n $CODE_LIBRARY/Haskell $CODE_LIBRARY/Blog ~/dev/functional;c
 
 alias st='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias getpath="pwd | tr -d '\n' | pbcopy"
+alias pubkey="cat ~/.ssh/id_rsa_nbb.pub|pbcopy"
 alias hgbii='hg branches | grep ipiyasena'
 
 
