@@ -1,16 +1,7 @@
+ZSH_HOME='/Users/indika/.zprezto'
+source $ZSH_HOME/architectures/osx-pre.sh
+
 # Wings configuration
-
-
-# It is important to source boxen before Prezto so that it can find binaries
-echo 'Sourcing boxen'
-SHELL='/bin/zsh'
-source /opt/boxen/env.sh
-
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
 
 # Customize to your needs...
 
@@ -20,10 +11,7 @@ MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnuman:$MANPATH"
 #export NIX_PATH=nixpkgs=/Users/indika/dev/tools/nixpkgs
 #source /Users/indika/.nix-profile/etc/profile.d/nix.sh
 
-ZSH_HOME='/Users/indika/.zprezto'
-# ZSH_HOME=$HOME/.zprezto
 
-alias resource="source ~/.zshrc"
 
 
 # Imports
@@ -50,10 +38,6 @@ VIRTUALENV_ROOT=/Users/indika/.virtualenvs
 PYTHON_POSTFIX=/bin/python
 
 export DRIVE="/Users/indika/Plasma/Google Drive"
-export DROPBOX="/Users/indika/Dropbox"
-export CODE_LIBRARY=${DROPBOX}/code_library
-export CONFIG_PYCHARM='/Users/indika/Library/Preferences/PyCharm30'
-export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages/User'
 
 
 alias system_test='sh /Users/indika/dev/hydra/system_tests/test_all.sh'

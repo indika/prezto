@@ -13,7 +13,6 @@ MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
 
 
 
-
 # Imports
 source $ZSH_HOME/architectures/all-common.sh
 source $ZSH_HOME/architectures/osx-common.sh
@@ -25,6 +24,7 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 
 # source $ZSH_HOME/architectures/tools/hd.sh
 # source $ZSH_HOME/architectures/tools/synergy.sh
+
 
 
 
