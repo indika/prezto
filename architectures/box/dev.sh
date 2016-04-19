@@ -7,6 +7,15 @@ export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/module
 # export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
 
 
+# Temp scripts - remember to delete me
+function test_red()
+{
+    cd /Users/indika/dev/box/internal/blue/test
+    aup -r root@red-dev.bb -v
+    aup root@red-dev.bb /Users/indika/dev/box/internal/blue/blue/newsitekey.py -v
+}
+
+
 # Switching between NB and BB
 function switch_bb()
 {

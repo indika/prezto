@@ -1,5 +1,20 @@
 
 
+function reboot_cloud()
+{
+    ssh cloudrel-icaps 'reboot'; ssh cloudrel-ccs 'reboot'; ssh cloudrel-cte 'reboot'; ssh cloudrel-test 'reboot';
+}
+
+function ap_cloud()
+{
+    cd /Users/indika/dev/box/internal/ansible
+    rm *.retry
+
+    ap cloud-icaps.yml;
+    ap cloud-ccs.yml;
+    ap cloud-cte.yml;
+    ap cloud-test.yml;
+}
 
 
 

@@ -18,8 +18,9 @@ fi
 
 # Customize to your needs...
 
-PATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnubin:$PATH"
-MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
+
+PATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnubin:$PATH"
+MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnuman:$MANPATH"
 
 #export NIX_PATH=nixpkgs=/Users/indika/dev/tools/nixpkgs
 #source /Users/indika/.nix-profile/etc/profile.d/nix.sh

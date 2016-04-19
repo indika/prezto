@@ -84,7 +84,7 @@ alias haskell='st -n $CODE_LIBRARY/Haskell $CODE_LIBRARY/Blog ~/dev/functional;c
 
 alias st='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias getpath="pwd | tr -d '\n' | pbcopy"
-alias pubkey="cat ~/.ssh/id_rsa_nbb.pub|pbcopy"
+alias sshpbcopy="cat ~/.ssh/id_rsa_cobalt.pub|pbcopy"
 alias hgbii='hg branches | grep ipiyasena'
 
 
@@ -118,9 +118,13 @@ function ad()
 
 
 # activate
-source ~/.virtualenvs/netbox/bin/activate
+# source ~/.virtualenvs/netbox/bin/activate
+
 
 # PYENV Stuff
+#TODO: Where is the best place I should be setting this
+pyenv shell 2.7.8
+
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # pyenv shell netbox

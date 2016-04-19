@@ -12,6 +12,12 @@ alias bb_ad='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u ipiyasena -d
 
 alias bb_ad2='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d bb.local -p Oxcoda99 10.50.10.29'
 
+
+alias lync_server='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.36 '
+
+
+
+
 alias lync_something='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.23'
 
 
