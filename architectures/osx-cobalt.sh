@@ -1,5 +1,32 @@
 # BOX configuration
 
+# It is important to source boxen before Prezto so that it can find binaries
+echo 'Sourcing boxen'
+SHELL='/bin/zsh'
+source /opt/boxen/env.sh
+
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+PATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnubin:$PATH"
+MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
+
+#export NIX_PATH=nixpkgs=/Users/indika/dev/tools/nixpkgs
+#source /Users/indika/.nix-profile/etc/profile.d/nix.sh
+
+ZSH_HOME='/Users/indika/.zprezto'
+# ZSH_HOME=$HOME/.zprezto
+source /Users/indika/.zprezto/architectures/osx-cobalt.sh
+
+alias resource="source ~/.zshrc"
+
+
+
 
 # Imports
 source $ZSH_HOME/architectures/all-common.sh
