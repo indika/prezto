@@ -1,13 +1,35 @@
 # Wings configuration
 
 
+# It is important to source boxen before Prezto so that it can find binaries
+echo 'Sourcing boxen'
+SHELL='/bin/zsh'
+source /opt/boxen/env.sh
+
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+PATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnubin:$PATH"
+MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnuman:$MANPATH"
+
+#export NIX_PATH=nixpkgs=/Users/indika/dev/tools/nixpkgs
+#source /Users/indika/.nix-profile/etc/profile.d/nix.sh
+
+ZSH_HOME='/Users/indika/.zprezto'
+# ZSH_HOME=$HOME/.zprezto
+
+alias resource="source ~/.zshrc"
+
 
 # Imports
-source $ZSH/architectures/box/common.sh
-source $ZSH/architectures/boxen/common.sh
+source $ZSH_HOME/architectures/all-common.sh
+source $ZSH_HOME/architectures/osx-common.sh
 
-
-alias ohmyzsh="st -n ~/.zshrc ~/.bashrc  ~/.oh-my-zsh ~/.oh-my-zsh/architectures/osx-wings.sh"
 
 
 # Motion specific
