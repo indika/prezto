@@ -21,7 +21,6 @@ MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
 
 ZSH_HOME='/Users/indika/.zprezto'
 # ZSH_HOME=$HOME/.zprezto
-source /Users/indika/.zprezto/architectures/osx-cobalt.sh
 
 alias resource="source ~/.zshrc"
 
