@@ -5,6 +5,11 @@
 
 
 
+# Running site updates while we do not have a correct blue
+
+# I'm renaming all instances of site-update with "ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate"
+# ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.2
+
 
 function site_init()
 {
@@ -24,7 +29,7 @@ function site_init()
 
 function safechat_init()
 {
-    # site-update lego devtools
+    # ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     cd /Users/indika/dev/box/netbox
     hg branch
 
@@ -41,8 +46,8 @@ function safechat_init()
 
 function run_update()
 {
-    site-update lego netbox_30.1.11
-    site-update oldrel-default netbox_30.1.9.3
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.1.11
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate oldrel-default netbox_30.1.9.3
     # ssh -t ipiyasena@blue.nb '/usr/local/sbin/quickupdate lego devtools-c7'
     # ssh -t ipiyasena@blue.nb '/usr/local/sbin/quickupdate motor netbox_30.2'
 }
@@ -120,13 +125,13 @@ function safechat_dev()
     # revert lego
     sleep 10s
 
-    site-update lego netbox_30.2.1
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.1
     cd /Users/indika/dev/tower/sites/lego
     ansible-playbook lego.yml
 
     # Now, consider doing the safechat unit test stuff
     # But I have to ensure that mercurial repositories are on the correct branch
-    site-update lego devtools
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
 
     safechat_init
 
@@ -139,7 +144,7 @@ function test_oldrel_migration()
 {
     revert_vm oldrel 47
     sleep 10s
-    site-update oldrel indika-testing
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate oldrel indika-testing
 }
 
 function test_pppoe()
@@ -164,7 +169,7 @@ function test_react()
     # python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     # cd /Users/indika/dev/tower/sites/lego
     # ansible-playbook lego.yml
-    # site-update lego devtools
+    # ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     # ss lego 'touch /tmp/q'
     cd /Users/indika/dev/box/netbox_clean/nbreporting
     aup -r ireport . -v
@@ -178,7 +183,7 @@ function test_lego_migration()
 {
     revert_vm lego 88
     sleep 5s
-    site-update lego netbox_30.2
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2
     sleep 60s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego 30.2
     ss lego 'touch /nbdebug; reboot'
@@ -191,14 +196,14 @@ function test_motor_migration()
 {
     revert_vm motor 63
     sleep 5s
-    site-update motor indika-testing
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate motor indika-testing
 }
 
 function test_lego_migration_old()
 {
     revert_vm lego 88
     sleep 5s
-    site-update lego netbox_30.2
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2
     sleep 60s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     ss lego 'touch /nbdebug; reboot'
@@ -206,7 +211,7 @@ function test_lego_migration_old()
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     cd /Users/indika/dev/tower/sites/lego
     ansible-playbook lego.yml
-    site-update lego devtools
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     ss lego 'touch /tmp/q'
     cd /Users/indika/dev/box/netbox/netcon
     aup -r lego . -v
@@ -218,13 +223,13 @@ function trawl_restart()
 
     revert_vm motor 63
     sleep 5s
-    site-update motor netbox_30.2
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate motor netbox_30.2
     sleep 60s
 
     python /Users/indika/dev/box/sandbox/contact_site.py waitup motor 30.2
     cd /Users/indika/dev/tower/sites/motor
     ansible-playbook motor.yml
-    site-update motor devtools
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate motor devtools
     ss motor 'touch /tmp/q'
     cd /Users/indika/dev/box/netbox/netcon/src/netcon/migration
     aup -r motor . -v
@@ -282,7 +287,7 @@ function set_dev_lego()
 {
     revert_lego
     sleep 5s
-    site-update lego netbox_30.2
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2
     sleep 60s
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     ss lego 'touch /nbdebug; reboot'
@@ -290,7 +295,7 @@ function set_dev_lego()
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     cd /Users/indika/dev/tower/sites/lego
     ansible-playbook lego.yml
-    site-update lego devtools
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     ss lego 'touch /tmp/q'
     cd /Users/indika/dev/box/netbox/netcon
     aup -r lego . -v
@@ -306,7 +311,7 @@ function set_dev_lego_30_1_11()
     python /Users/indika/dev/box/sandbox/contact_site.py waitup lego
     cd /Users/indika/dev/tower/sites/lego
     ansible-playbook lego.yml
-    site-update lego devtools
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     ss lego 'touch /tmp/q'
 }
 
