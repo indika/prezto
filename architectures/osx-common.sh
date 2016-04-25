@@ -14,6 +14,15 @@ alias st='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias getpath="pwd | tr -d '\n' | pbcopy"
 
 
+# Emacs stuff
+
+alias vi='emacsclient -nw'
+function em()
+{
+    emacsclient -n $1
+}
+
+
 # Generic Stuff
 
 export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages'
@@ -22,3 +31,6 @@ export DROPBOX="/Users/indika/Dropbox"
 export CODE_LIBRARY=${DROPBOX}/code_library
 
 alias resource="source ~/.zshrc"
+
+alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
+alias rmlog='find . -name "*.log" -exec rm -rf {} \;'

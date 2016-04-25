@@ -1,4 +1,5 @@
 ZSH_HOME='/Users/indika/.zprezto'
+ZSH_HOME='/Users/indika/.zprezto'
 source $ZSH_HOME/architectures/osx-pre.sh
 
 # Wings configuration
