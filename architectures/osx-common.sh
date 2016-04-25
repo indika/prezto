@@ -40,3 +40,12 @@ alias timestamp="python -c 'import time; now = time.time(); print int(now); prin
 
 # Remind Stuff
 alias sremind='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
+
+# Search Spanish library
+function spag()
+{
+    ag --ignore-case -A5 $1 $CODE_LIBRARY/Languages/spanish
+}
+
+
+
