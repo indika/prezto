@@ -35,6 +35,8 @@ alias resource="source ~/.zshrc"
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias rmlog='find . -name "*.log" -exec rm -rf {} \;'
 
+alias timestamp="python -c 'import time; now = time.time(); print int(now); print int(now * 1000)'"
+
 
 # Remind Stuff
 alias sremind='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
