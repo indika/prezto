@@ -10,6 +10,58 @@
 # I'm renaming all instances of site-update with "ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate"
 # ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.2
 
+    #TODO: Have a look at this page
+    # http://vmware.nb/listsnapshots?uuid=5000724b-446e-8163-71c7-707a055ce2a1
+
+    #75         30.1.9 - clean
+    #76         30.1.10 - clean
+    #77         30.1.11 - clean
+    #78         30.1.11 checkpoint - clean (updated SSH Key)
+    #79         30.1.11 checkpoint - clean (updated SSH Key)
+    #80         30.2 checkpoint (oxcoda testing)
+    #81         30.2 checkpoint (oxcoda testing, with lan)
+    #83         30.2 d - (oxcoda testing, with Cobalt and no Internet)
+    #84         30.1.11d - pppoe test (prep)
+    #86         30.1.11 checkpoint - clean (updated SSH Key, with multiple Nics)
+        #88     30.1.11 checkpoint - clean (updated SSH Key, Cobalt, with multiple nics)
+    #87         30.1.11 Configuration
+    #106        30.2 - proxy (clean, cobalt)
+    #110        30.2.2 - clean
+    #111        30.2.2 - dirty dev
+    #113        30.2.2 - clean proxy b
+
+
+
+function safechat_dev()
+{
+    #TODO: Integrate this target
+    TARGET = '30.2.4'
+
+    revert_vm lego 113
+    # revert lego
+    sleep 10s
+
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.2
+    # Now, consider doing the safechat unit test stuff
+    # But I have to ensure that mercurial repositories are on the correct branch
+
+    #TODO: I need to create a wait for site guard
+
+    printf '\Sleeping for 5minutes\n'
+    sleep 600s
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
+
+    sleep 60s
+
+    cd /Users/indika/dev/tower/sites/lego
+    ansible-playbook lego.yml
+
+    safechat_init
+
+    sleep 30s
+    ssh lego 'reboot'
+}
+
 
 function site_init()
 {
@@ -30,17 +82,19 @@ function site_init()
 function safechat_init()
 {
     # ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
-    cd /Users/indika/dev/box/netbox
-    hg branch
+    cd /Users/indika/dev/box/reconstruction/netbox
+    hg pull -u
+    hg checkout 30.2.2
 
-    cd /Users/indika/dev/box/safechat
-    hg branch
+    cd /Users/indika/dev/box/reconstruction/safechat
+    hg pull -u
+    hg checkout 9.12.2
 
-    aup -r lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/test -v
-    aup lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/conftest.py -v
-    aup lego /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan/helper -v
+    aup -r lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/test -v
+    aup lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/conftest.py -v
+    aup lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/helper -v
 
-    aup -r lego /Users/indika/dev/box/netbox/nbarchive/src/nbarchive/test -v
+    aup -r lego /Users/indika/dev/box/reconstruction/netbox/nbarchive/src/nbarchive/test -v
 }
 
 
@@ -79,22 +133,7 @@ function motor_remove_dev_nic()
 
 function revert_lego()
 {
-    #TODO: Have a look at this page
-    # http://vmware.nb/listsnapshots?uuid=5000724b-446e-8163-71c7-707a055ce2a1
 
-    #75         30.1.9 - clean
-    #76         30.1.10 - clean
-    #77         30.1.11 - clean
-    #78         30.1.11 checkpoint - clean (updated SSH Key)
-    #79         30.1.11 checkpoint - clean (updated SSH Key)
-    #80         30.2 checkpoint (oxcoda testing)
-    #81         30.2 checkpoint (oxcoda testing, with lan)
-    #83         30.2 d - (oxcoda testing, with Cobalt and no Internet)
-    #84         30.1.11d - pppoe test (prep)
-    #86         30.1.11 checkpoint - clean (updated SSH Key, with multiple Nics)
-        #88     30.1.11 checkpoint - clean (updated SSH Key, Cobalt, with multiple nics)
-    #87         30.1.11 Configuration
-    #106        30.2 - proxy (clean, cobalt)
 
 
     # Lego has UUID: 50004144-07fe-d267-1b01-9413ce4c1027
@@ -119,25 +158,7 @@ function revert_motor()
     # Motor has UUID: 50007f7d-f5cb-7a5b-ad23-9761b1d5e6a6
 }
 
-function safechat_dev()
-{
-    revert_vm lego 106      #30.2 - proxy (clean, cobalt)
-    # revert lego
-    sleep 10s
 
-    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.1
-    cd /Users/indika/dev/tower/sites/lego
-    ansible-playbook lego.yml
-
-    # Now, consider doing the safechat unit test stuff
-    # But I have to ensure that mercurial repositories are on the correct branch
-    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
-
-    safechat_init
-
-    sleep 30s
-    ssh lego 'reboot'
-}
 
 
 function test_oldrel_migration()

@@ -32,7 +32,7 @@ function switch_nb()
 
 function revert_vm()
 {
-    /Users/indika/.virtualenvs/netbox/bin/python /Users/indika/dev/box/sandbox/helpers/revert_vm.py $1 $2
+    /opt/boxen/pyenv/shims/python /Users/indika/dev/box/sandbox/helpers/revert_vm.py $1 $2
 }
 
 # # Add GHC 7.10.2 to the PATH, via https://ghcformacosx.github.io/

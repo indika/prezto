@@ -17,7 +17,7 @@ alias getpath="pwd | tr -d '\n' | pbcopy"
 # Generic Stuff
 
 export CONFIG_SUBLIME='/Users/indika/Library/Application Support/Sublime Text 3/Packages'
-export CONFIG_PYCHARM='/Users/indika/Library/Preferences/PyCharm40'
+export CONFIG_PYCHARM='/Users/indika/Library/Preferences/PyCharm2016.1'
 export DROPBOX="/Users/indika/Dropbox"
 export CODE_LIBRARY=${DROPBOX}/code_library
 
