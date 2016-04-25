@@ -1,4 +1,5 @@
 ZSH_HOME='/Users/indika/.zprezto'
+ZSH_HOME='/Users/indika/.zprezto'
 source $ZSH_HOME/architectures/osx-pre.sh
 
 # Wings configuration
@@ -57,7 +58,7 @@ export USER_AGENT=${USER_AGENT_CHROME}
 # Searches using ag
 function ad()
 {
-    ag -A3 -B1 $1 $CODE_LIBRARY /Volumes/MacFuse /Users/indika/dev/box/docs $DRIVE/store
+    ag --ignore-case -A3 -B1 $1 $CODE_LIBRARY /Volumes/MacFuse /Users/indika/dev/box/docs $DRIVE/store
 }
 
 function hd()
