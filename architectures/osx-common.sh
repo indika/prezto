@@ -34,3 +34,7 @@ alias resource="source ~/.zshrc"
 
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias rmlog='find . -name "*.log" -exec rm -rf {} \;'
+
+
+# Remind Stuff
+alias sremind='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
