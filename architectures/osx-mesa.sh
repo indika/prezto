@@ -13,6 +13,7 @@ MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.23_1/libexec/gnuman:$MANPATH"
 
 
 
+
 # Imports
 source $ZSH_HOME/architectures/all-common.sh
 source $ZSH_HOME/architectures/osx-common.sh
@@ -26,14 +27,6 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 # source $ZSH_HOME/architectures/tools/synergy.sh
 
 
-
-
-
-# Emacs stuff
-function em()
-{
-    emacsclient -n $1
-}
 
 
 # VM stuff
@@ -81,9 +74,6 @@ alias psql='/opt/boxen/homebrew/bin/psql -d postgres'
 
 alias pass='pwgen -y 16'
 
-
-alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
-alias rmlog='find . -name "*.log" -exec rm -rf {} \;'
 
 alias haskell='st -n $CODE_LIBRARY/Haskell $CODE_LIBRARY/Blog ~/dev/functional;cd ~/dev/functional'
 
