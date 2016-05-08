@@ -46,6 +46,17 @@ function spag()
 {
     ag --ignore-case -A5 $1 $CODE_LIBRARY/Languages/spanish
 }
+alias spes='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/translator/translate.py translate en es'
+alias spen='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/translator/translate.py translate es en'
 
+function sdef()
+{
+    open dict:://$1
+}
+
+function spc()
+{
+    spes $1 | pbcopy
+}
 
 

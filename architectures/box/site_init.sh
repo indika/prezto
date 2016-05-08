@@ -29,19 +29,21 @@
     #110        30.2.2 - clean
     #111        30.2.2 - dirty dev
     #113        30.2.2 - clean proxy b
+    #114        30.4 - clean proxy
+
+
 
 
 
 function safechat_dev()
 {
-    #TODO: Integrate this target
-    TARGET = '30.2.4'
+    #TODO: Implement a waitfor, but then have to revert to one before
+    TARGET='30.4'
+    revert_vm lego 114
 
-    revert_vm lego 113
-    # revert lego
     sleep 10s
 
-    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego netbox_30.2.2
+    ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego ${TARGET}
     # Now, consider doing the safechat unit test stuff
     # But I have to ensure that mercurial repositories are on the correct branch
 
@@ -84,17 +86,17 @@ function safechat_init()
     # ssh -t ipiyasena@blue.nb sudo /usr/local/sbin/quickupdate lego devtools
     cd /Users/indika/dev/box/reconstruction/netbox
     hg pull -u
-    hg checkout 30.2.2
+    hg checkout 30.2.3
 
     cd /Users/indika/dev/box/reconstruction/safechat
     hg pull -u
-    hg checkout 9.12.2
+    hg checkout 9.12.3
 
-    aup -r lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/test -v
-    aup lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/conftest.py -v
-    aup lego /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/helper -v
+    aup -r motor /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/test -v
+    aup motor /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/conftest.py -v
+    aup motor /Users/indika/dev/box/reconstruction/safechat/nbwebscan/src/nbwebscan/helper -v
 
-    aup -r lego /Users/indika/dev/box/reconstruction/netbox/nbarchive/src/nbarchive/test -v
+    aup -r motor /Users/indika/dev/box/reconstruction/netbox/nbarchive/src/nbarchive/test -v
 }
 
 

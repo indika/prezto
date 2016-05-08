@@ -1,10 +1,10 @@
 # Netbox Blue Specific
 
-export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
-# export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+# export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
 
-export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
-# export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
+# export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
+export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
 
 
 # Temp scripts - remember to delete me
