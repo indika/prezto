@@ -108,8 +108,8 @@ function test_on_motor()
     # cd /Users/indika/dev/box/safechat
     # hg baup motor /Users/indika/dev/box/safechat
 
-    aup -r motor .
-    rununittest motor -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
+    aup -r m .
+    rununittest m -n -t '-xvs --report=skipped' $1 2>&1 | tee $1.log
 
     ag -B 1 -A 3 'indika' $1.log
     ag -B 1 -A 3 'FAIL' $1.log

@@ -3,6 +3,7 @@
 
 alias boxen_edit='st -n /Users/indika/dev/config/sublime/projects/boxen.sublime-project'
 alias ap='ansible-playbook'
+alias lap='ansible-playbook -i "localhost," -c local mesa.yml'
 
 
 function pre_boxen()
