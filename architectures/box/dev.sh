@@ -1,10 +1,10 @@
 # Netbox Blue Specific
 
-export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
-# export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+# export PATH=$PATH:/Users/indika/dev/box/internal/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
+export PATH=$PATH:/Users/indika/dev/box/internal_nb/nb-devtools/bin:/Users/indika/dev/box/sandbox:/Users/indika/.local/bin/
 
-export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
-# export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
+# export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal/nb-devtools/modules'
+export PYTHONPATH=$PYTHONPATH:'/Users/indika/dev/box/internal_nb/nb-devtools/modules'
 
 
 # Temp scripts - remember to delete me
@@ -132,15 +132,15 @@ function test_on_site()
 
 function test_all_in_directory()
 {
-    printf "HG differential (src/nbwebscan/)  AUPed to LEGO\n"
-    hg baup lego /Users/indika/dev/box/safechat
+    printf "HG differential (src/nbwebscan/)  AUPed to Motor\n"
+    hg baup m /Users/indika/dev/box/safechat
 
     for f in test_*.py
     do
         # echo $f
         filename="${filename%.*}"
         echo filename
-        rununittest lego -n -t '-xvs --report=skipped' $f 2>&1 | tee $f.log
+        rununittest m -n -t '-xvs --report=skipped' $f 2>&1 | tee $f.log
 
     if [[ "$f" != *\.* ]]
     then
