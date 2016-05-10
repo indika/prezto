@@ -1,16 +1,40 @@
 
 
 FULL_SCREEN_13='1024x700'
+FULL_SCREEN_15='1024x800'
 FULL_SCREEN_23='1920x1040'
-FULL_SCREEN_24='1920x1160'
+FULL_SCREEN_15='1920x1160'
 
-#alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u netboxblue -d win7-64bit -p oxcoda99 10.107.9.1"
-alias win7unittest="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d win7-64bit -p oxcoda99 10.107.9.1"
+# Retina display has
+# 2880 x 1800
+
+#alias win7unittest="rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u netboxblue -d win7-64bit -p oxcoda99 10.107.9.1"
+alias win7unittest="rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u Administrator -d win7-64bit -p oxcoda99 10.107.9.1"
 
 
-alias bb_ad='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u ipiyasena -d ad -u ipiyasena -p Oxcoda99 10.50.0.1'
+alias bb_ad='rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u ipiyasena -d ad -u ipiyasena -p Oxcoda99 10.50.0.1'
 
-alias bb_ad2='rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d bb.local -p Oxcoda99 10.50.10.29'
+alias bb_ad2='rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u Administrator -d bb.local -p Oxcoda99 10.50.10.29'
+
+alias lync_01='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.23'
+
+alias lync_02='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.24'
+
+alias lync_FE='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.22'
+
+alias perc_01='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.36'
+alias perc_02='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.37'
+
+alias win_build='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.87'
+
+alias winsystest='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.105'
+
+
+alias sql_01='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.25'
+
+alias skype_test_one='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.29'
+alias skype_test_two='rdesktop -g${FULL_SCREEN_13} -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.35'
+
 
 
 alias lync_server='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -d cluster -p Oxcoda99! 10.50.0.36 '
@@ -22,14 +46,12 @@ alias lync_something='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrat
 
 
 
-alias lync_admin="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11"
+alias lync_admin="rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11"
 alias lync_admin_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u Administrator -d nbbdev2008 -p oxcoda99 10.12.101.11'
 alias lync_admin_root='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u Administrator -p Oxcoda99 10.12.101.11'
 
 
 
-alias win_build='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.87'
-alias winsystest='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99! 10.50.10.105'
 
 alias wintemp='rdesktop -g1920x1160 -r clipboard:CLIPBOARD -u BloomDev -d cluster -p Oxcoda99 10.50.10.112'
 
@@ -54,7 +76,7 @@ alias lync_user3_mini='rdesktop -g1365x730 -r clipboard:CLIPBOARD -u user3 -d nb
 
 # alias lync_beast='rdesktop -g800x1000 -r clipboard:CLIPBOARD -u Administrator -d labs.local -p Oxcoda99 10.12.100.11'
 
-alias lync_beast="rdesktop -g${FULL_SCREEN_24} -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186"
+alias lync_beast="rdesktop -g${FULL_SCREEN_15} -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186"
 
 # At Home
 # alias lync_beast='rdesktop -g1920x1025 -r clipboard:CLIPBOARD -u Administrator -d labs.local -p oxcoda99 10.12.11.186'

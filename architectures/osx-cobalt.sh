@@ -99,11 +99,6 @@ alias movies='echo "https://thepiratebay.vg//browse/201/0/7/0" | pbcopy'
 
 
 
-function last_command()
-{
-    var=`tail -2 ~/.zsh_history | head -1`
-    echo $var | grep -oE ';(.*)' | cut -c 2- | pbcopy
-}
 
 
 # This has to come after the aliases

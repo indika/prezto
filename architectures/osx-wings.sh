@@ -320,11 +320,6 @@ function convert_flac_to_mp3()
     done
 }
 
-function run_last_command()
-{
-    echo !!
-}
-
 
 # Postgres
 # alias postgres_start='postgres -D /usr/local/var/postgres'

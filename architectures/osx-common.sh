@@ -14,6 +14,9 @@ alias st='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias getpath="pwd | tr -d '\n' | pbcopy"
 
 
+alias lc="fc -l '-1' | cut -f '5-' -d ' ' | gsed -e 's/^\s*//' -e 's/\s*$//' | xargs echo -n | pbcopy"
+
+
 # Emacs stuff
 
 alias vi='emacsclient -nw'
