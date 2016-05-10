@@ -19,6 +19,8 @@ MANPATH="/opt/boxen/homebrew/Cellar/coreutils/8.25/libexec/gnuman:$MANPATH"
 source $ZSH_HOME/architectures/all-common.sh
 source $ZSH_HOME/architectures/osx-common.sh
 
+source $ZSH_HOME/architectures/tools/boxen.sh
+
 
 
 # Motion specific
@@ -328,7 +330,6 @@ alias postgres_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 
 SUBLIME_HOME_USER='/Users/indika/Library/Application Support/Sublime Text 3/Packages/User'
-PYCHARM_CONFIG_HOME='/Users/indika/Library/Preferences/PyCharm30'
 DIAGRAMS_HOME='/Users/indika/dev/meta/diagrams'
 
 
