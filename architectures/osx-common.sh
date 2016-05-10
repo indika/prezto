@@ -15,6 +15,7 @@ alias getpath="pwd | tr -d '\n' | pbcopy"
 
 
 alias lc="fc -l '-1' | cut -f '5-' -d ' ' | gsed -e 's/^\s*//' -e 's/\s*$//' | xargs echo -n | pbcopy"
+alias t="fc -e : -1"
 
 
 # Emacs stuff
