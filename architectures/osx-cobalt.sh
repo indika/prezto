@@ -31,12 +31,6 @@ source $ZSH_HOME/architectures/tools/boxen.sh
 
 
 
-# VM stuff
-alias vm_pause='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 pause'
-alias vm_resume='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 resume'
-alias vm_start='VBoxManage startvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 --type headless'
-alias vm_stop="ssh shan 'shutdown now'"
-alias vm_status='VBoxManage list runningvms | grep 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30'
 
 # Tower stuff
 
@@ -74,7 +68,6 @@ alias psql='/opt/boxen/homebrew/bin/psql -d postgres'
 
 
 
-alias pass='pwgen -y 16'
 
 
 alias haskell='st -n $CODE_LIBRARY/Haskell $CODE_LIBRARY/Blog ~/dev/functional;cd ~/dev/functional'
@@ -86,11 +79,8 @@ alias sshpbcopy="cat ~/.ssh/id_rsa_cobalt.pub|pbcopy"
 alias hgbii='hg branches | grep ipiyasena'
 
 
-alias pass='pwgen -y 16'
-
 
 alias write='st -n /Users/indika/dev/config/sublime/projects/write.sublime-project'
-
 
 
 

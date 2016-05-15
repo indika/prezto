@@ -12,8 +12,8 @@ function test_stats()
 {
     cd /Users/indika/dev/box/safechat/nbwebscan/src/nbwebscan
     aup m chunk.py icap/stats/chunk_stats.py -v
-
 }
+
 
 function test_red()
 {

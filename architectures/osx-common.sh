@@ -17,6 +17,19 @@ alias getpath="pwd | tr -d '\n' | pbcopy"
 alias lc="fc -l '-1' | cut -f '5-' -d ' ' | gsed -e 's/^\s*//' -e 's/\s*$//' | xargs echo -n | pbcopy"
 alias t="fc -e : -1"
 
+alias passgen='pwgen -y 16'
+
+
+# Temp scripts: Remember to delete me
+
+function test_tree()
+{
+    cd /Users/indika/Dropbox/Projects/meta/sandbox
+    python collapser.py
+}
+
+
+
 
 # Emacs stuff
 
@@ -42,6 +55,15 @@ alias rmlog='find . -name "*.log" -exec rm -rf {} \;'
 alias timestamp="python -c 'import time; now = time.time(); print int(now); print int(now * 1000)'"
 
 
+# VM stuff
+alias vm_pause='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 pause'
+alias vm_resume='VBoxManage controlvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 resume'
+alias vm_start='VBoxManage startvm 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30 --type headless'
+alias vm_stop="ssh shan 'shutdown now'"
+alias vm_status='VBoxManage list runningvms | grep 32e32fcf-2b86-44a4-b28f-ec9faa5ddb30'
+
+
+
 # Remind Stuff
 alias sremind='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
 
@@ -62,5 +84,24 @@ function spc()
 {
     spes $1 | pbcopy
 }
+
+
+
+# Timers
+function countdown(){
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+function stopwatch(){
+  date1=`date +%s`;
+   while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+    sleep 0.1
+   done
+}
+
 
 
