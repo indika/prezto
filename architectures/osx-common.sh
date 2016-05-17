@@ -65,7 +65,7 @@ alias vm_status='VBoxManage list runningvms | grep 32e32fcf-2b86-44a4-b28f-ec9fa
 
 
 # Remind Stuff
-alias sremind='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
+alias sremind='export PYTHONPATH="/Users/indika/Dropbox/Projects/meta"; /Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/remind.py'
 
 # Search Spanish library
 function spag()
@@ -74,6 +74,7 @@ function spag()
 }
 alias spes='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/translator/translate.py translate en es'
 alias spen='/Users/indika/.virtualenvs/meta/bin/python /Users/indika/Dropbox/Projects/meta/language/translator/translate.py translate es en'
+alias spin='export PYTHONPATH="/Users/indika/Dropbox/Projects/meta"; /Users/indika/.virtualenvs/meta/bin/python -m language.duolingo.query infinitive'
 
 function sdef()
 {
