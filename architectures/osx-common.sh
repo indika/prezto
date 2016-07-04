@@ -87,6 +87,9 @@ function spc()
 }
 
 
+# Major System
+alias major='export PYTHONPATH="/Users/indika/Dropbox/Projects/meta"; /Users/indika/.virtualenvs/meta/bin/python -m language.major.query number'
+
 
 # Timers
 function countdown(){
